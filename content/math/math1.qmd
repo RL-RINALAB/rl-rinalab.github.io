@@ -1,0 +1,8 @@
+---
+title: Mathematics of Classical Learning Theory
+description: "Foundational mathematical concepts and provisions for classical statistical learning theory."
+author: "Amane Fujimiya"
+date: "2026-06-29"
+date-modified: "2026-07-13"
+---
+

@@ -1,0 +1,25 @@
+# Render and publish to GitHub Pages on every push to main.
+# One-time setup: run `quarto publish gh-pages` locally once (creates the
+# gh-pages branch), and commit the _freeze/ folder so CI never needs R/Python.
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          path: book            # the folder holding _quarto.yml (your repo-subdir); "." if it is the repo root
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

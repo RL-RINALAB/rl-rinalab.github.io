@@ -1,0 +1,7 @@
+---
+title: Classical Statistical Model Complexity
+description: "Often times, statistical learning theories try to grasp the concept of model complexity for learning boundary. What should that be, of present?"
+author: Amane Fujimiya
+---
+In many parts of the learning theory system, under classical consideration, many theories and *learning bounds* - i.e. often the result of a paper, an analysis or a sub-theory, is in the form of connecting *complexity models* of the learning setting to mathematical presentation of models or so. In some cases, for example, such is often between *model complexity* and *sample or dataset size*, to gauge the *efficiency of learning*. You can think of that as between the complexity $\mathcal{M}(h)$ to "how much structure and power of this same kind" corresponding to $m=|\mathcal{S}|$ to "how much data or instance of the situation I have to feed this model". 
+ 

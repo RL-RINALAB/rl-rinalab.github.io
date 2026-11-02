@@ -1,0 +1,155 @@
+---
+title: "Style reference"
+subtitle: "Every element the RHINELAB theme styles, in one page"
+---
+
+Use this page to check the theme after changes, and as a copy-paste source for the author utilities. It is not listed in `_quarto.yml` by default; add it under `appendices:` if you want it published.
+
+## Specification blocks {#sec-spec}
+
+A definition list inside `::: {.spec}` renders as a key/value sheet:
+
+::: {.spec}
+Lab type
+: [UNIG-1]{.tag .accent} Universal (Scientific) Research Group
+
+Designation
+: Follows from `DOC-OR-PROP-07` and subsequent `MNU-OR-02`
+
+Status
+: [active]{.tag .ok} [migration]{.tag .warn} [deprecated]{.tag .err} [draft]{.tag .info} [plain]{.tag}
+:::
+
+```markdown
+::: {.spec}
+Lab type
+: [UNIG-1]{.tag .accent} Universal (Scientific) Research Group
+:::
+```
+
+## Text and emphasis
+
+Body text is set in IBM Plex Sans at 14 px. **Bold marks a term** (house orange), *italic marks a concept* (house teal), and [links](https://quarto.org) stay blue with a thin underline so they are never confused with italics. Inline code reads as `DOC-OR-PROP-07`, and keys as {{< kbd Ctrl-K >}}.
+
+1. **Neural network formalism**: ordered list markers are monospace.
+2. **Foundational modelling theory**: in construction.
+    - nested bullet, tighter spacing
+    - another bullet with `inline code`
+3. Theoretical computer science and *computational learning theory*.
+
+> A blockquote is quiet: muted colour, a single rule on the left.
+
+Term
+: Plain definition lists keep a hanging indent, as in Sphinx field lists.
+
+### Third-level heading
+
+#### Fourth-level heading (mono label)
+
+A footnote reference.[^1] A margin note sits to the side.
+
+[^1]: Footnotes appear in the margin because `reference-location: margin`.
+
+::: {.column-margin}
+Margin note: 12 px, muted.
+:::
+
+## Mathematics and theorem blocks {#sec-thm}
+
+::: {#def-pac}
+## PAC learnability
+A hypothesis class $\mathcal{H}$ is PAC learnable if there exist $m_{\mathcal{H}} : (0,1)^2 \to \mathbb{N}$ and an algorithm $A$ such that for all $\epsilon, \delta \in (0,1)$ and every distribution $\mathcal{D}$, running $A$ on $m \ge m_{\mathcal{H}}(\epsilon, \delta)$ i.i.d. samples returns $h$ with $L_{\mathcal{D}}(h) \le \epsilon$ with probability at least $1-\delta$.
+:::
+
+::: {#thm-finite}
+## Finite classes
+Every finite hypothesis class is PAC learnable with sample complexity
+$$
+m_{\mathcal{H}}(\epsilon,\delta) \le \left\lceil \frac{\log(|\mathcal{H}|/\delta)}{\epsilon} \right\rceil .
+$$ {#eq-finite}
+:::
+
+::: {.proof}
+Union bound over the bad hypotheses, then solve @eq-finite for $m$.
+:::
+
+::: {#lem-hoeffding}
+## Hoeffding
+For i.i.d. $X_i \in [a,b]$, $\Pr\left[\left|\bar X - \mathbb{E}X\right| > t\right] \le 2\exp\!\left(-\tfrac{2mt^2}{(b-a)^2}\right)$.
+:::
+
+::: {#exm-thresholds}
+Threshold functions on $\mathbb{R}$ have VC dimension 1.
+:::
+
+::: {.remark}
+Remarks and solutions do not get the ∎ mark.
+:::
+
+Cross-references resolve and preview on hover: @def-pac, @thm-finite, @lem-hoeffding, @sec-spec.
+
+## Callouts
+
+::: {.callout-note}
+## Note
+Compact header in monospace capitals; body at 0.9 rem.
+:::
+
+::: {.callout-tip}
+Untitled tip.
+:::
+
+::: {.callout-warning collapse="true"}
+## Collapsible warning
+Hidden until opened.
+:::
+
+::: {.callout-important}
+## Important
+Uses the error colour token.
+:::
+
+::: {.callout-caution}
+## Caution
+Uses the house orange.
+:::
+
+## Tables
+
+| Group   | Code      | Members | Status                     |
+|:--------|:----------|--------:|:---------------------------|
+| MTAIL   | `UNIG-1`  |       5 | [active]{.tag .ok}         |
+| TBIO    | `UNIG-2`  |       3 | [setup]{.tag .warn}        |
+| Astro   | `UNIG-3`  |       2 | [draft]{.tag .info}        |
+
+: Research groups {#tbl-groups}
+
+## Code
+
+```python
+def erm(H, sample):
+    """Empirical risk minimisation over a finite class."""
+    return min(H, key=lambda h: sum(h(x) != y for x, y in sample))
+```
+
+```{.python filename="learners/erm.py"}
+import numpy as np
+
+def risk(h, X, y):
+    return np.mean(h(X) != y)  # <1>
+```
+1. Code annotations show on hover.
+
+```bash
+quarto add Amane-Fujimiya/quarto-rhinelab
+quarto render
+```
+
+## Diagrams
+
+```{mermaid}
+flowchart LR
+  A[Sample S] --> B[ERM]
+  B --> C{h in H}
+  C -->|L_S small| D[Generalises]
+```

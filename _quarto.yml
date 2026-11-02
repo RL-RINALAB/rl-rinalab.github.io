@@ -1,0 +1,96 @@
+project:
+  type: book
+  output-dir: public
+  resources:
+    - robots.txt            # was "robot.txt"; crawlers only read robots.txt
+
+book:
+  title: "Learning Theory Coursebook"
+  site-url: https://amane-fujimiya.github.io/<repo>/      # replace <repo>; enables sitemap, canonical links, 404 page
+  repo-url: https://github.com/Amane-Fujimiya/<repo>      # replace <repo>
+  repo-actions: [edit, issue, source]
+  repo-subdir: book
+  repo-link-target: _blank
+  favicon: Figures/favicon.ico
+  cover-image: img_core/logos.png
+  # downloads: [pdf]
+
+  page-navigation: true
+  back-to-top-navigation: true
+  bread-crumbs: true
+  reader-mode: true
+
+  search:
+    location: sidebar
+    type: textbox
+    limit: 30
+    collapse-after: 3
+    show-item-context: tree
+    copy-button: true
+
+  sidebar:
+    style: docked
+    pinned: true
+    collapse-level: 1
+    border: true
+    search: true
+    tools:                           # repo-url already adds the GitHub icon
+      - icon: house
+        href: https://amane-fujimiya.github.io/
+        text: RHINELAB
+
+  page-footer:
+    # no hard-coded background: the theme sets it per mode
+    left: |
+      [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · &copy; Bui Gia Khanh
+    center: |
+      [Website](https://amane-fujimiya.github.io/) · [GitHub](https://github.com/Amane-Fujimiya) · [Blog](https://amane-fujimiya.github.io/blogs) · RHINELAB-RINALAB · MTAIL
+    right: Built with [Quarto](https://quarto.org/)
+  chapters:
+    - index.qmd
+    - content/convention.qmd
+    - part: "Classical Learning Theory"
+      chapters:
+        - content/slt/slt_intro.qmd
+        - content/slt/slt1.qmd
+  # appendices:
+  #   - content/style-reference.qmd
+
+bibliography: references.bib
+date-modified: last-modified          # feeds "Modified" in the sidebar page panel
+
+crossref:
+  chapters: true                      # Theorem 2.3, Figure 3.1, ...
+
+execute:
+  freeze: auto                        # only re-run code when a source file changes; commit _freeze/
+
+format:
+  rhinelab-html:                      # the extension in _extensions/rhinelab
+    number-sections: true
+    number-depth: 3
+    code-link: true
+    code-tools:
+      toggle: true
+    code-fold: false
+    code-overflow: wrap
+    reference-location: margin
+    # mermaid: do not set a theme; it now follows light/dark automatically
+
+latex-auto-install: true
+
+knitr:
+  opts_chunk:
+    cache: true
+    cache.lazy: false
+    dpi: 600
+    fig.width: 5.5
+    fig.height: 3
+    out.width: "100%"
+    split: true
+    R.options:
+      knitr.graphics.auto_pdf: true
+      datatable.print.nrows: 10
+      datatable.print.class: false
+      datatable.print.keys: false
+      datatable.print.trunc.cols: TRUE

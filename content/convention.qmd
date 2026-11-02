@@ -1,0 +1,7 @@
+# Convention
+
+To provide us with a sufficient sense and notation baseline of sort, we would like to provide chapter-and-section-basis on what is the notation. 
+
+## Abstract components
+
+

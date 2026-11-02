@@ -1,0 +1,4 @@
+## RHINELAB@UNIG-01@MTAIL front website
+
+This is the documentation page for many of the development of the **Modelling, Theoretical Artificial Intelligence and Learning-theoretic Group** (MTAIL) and documentation thereof. It will also include several notes and exposure of the lab itself here, including the *ranking order* framework itself (this one is under-developed, but sure, we might as well include the bare-bone), many notes and question debates, and more. First created by the necessity of purpose for reorganizing the research program into a multi-people central consensus rather than a solo-working environment, the website is minimally created to hook with the main website of the laboratory, and host all capable form of documents and writing relevant to the work that the lab group conducts itself of. 
+

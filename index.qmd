@@ -1,0 +1,32 @@
+---
+format:
+  html:
+    grid:
+      body-width: 1200px
+---
+# Introduction
+
+Welcome to the silver lining and the core main documentation, coursebook thereof, for **learning theory** and its special branching, such as statistical learning theory, of RHINELAB-MTAIL [**Modelling, Theoretical Artificial Intelligence and Learning-theoretic Group**](https://rhine-ai-mdl-f81031.gitlab.io/). Here, we can consider as the subsidiary architecture - basically the core *specialized documentation wiki* of this particular research group on topic relevant to the theory side of artificial intelligence development, and also the more narrow focus on **learning theory**. 
+
+Most of the content is developed to further research into the conceptual framework and buildup of artificial intelligence, *dynamic theory*, adaptive inference theory, *symbolic inductive inference*, and so on depending on the covering choice of the system of theory for *dynamic machines*, as opposition to the calling and naming convention of artificial intelligence sometimes. Many parts of the content would be centred around theoretical exposure, with experiments here and there as part of the knowledge regime and what to be said about classical artificial intelligence theory of which we termed the time-restrictive content as regarding pre-2025 developments as of classical, disorganized and complex shape for the field. 
+
+:::{.callout-note}
+
+### Why dynamic machines
+
+We do not use the term *artificial intelligence* instead but to gather our attention and shift to the name of a dynamic(al) machine, based on our rough criteria and identification of what makes it to be fully-considered artificial intelligence.  
+
+:::
+
+## Content and scope
+
+Here, we will at most cover the following contents for now, in accordance to the topic of choice in this capsule, and the scope as followed: 
+
+1. **Theory of learning**: the general, non-mathematical and mathematical thereof, of learning theory and also the action of learning itself. What it means, and the precursor form of such. 
+2. **Statistical learning theory**: Learning theory dependent on *statistical notion* and data-based, observation-dependent exposure. 
+3. **Symbolic learning theory**: Learning theory dependent on *logical system notion* and rule-based, deduction-line principles. 
+4. **Symbolic inductive inference**: Inductive inference from the first form, typical presented and illustrated thereof, from E. Mark Gold's paper *Inductive Inference: Theory and Method* [@10.1145/356914.356918]. 
+
+We would be developing and documenting those resources in a tone and scope of **worked professionals**, though some efforts would be tried and stated to be as pedagogical friendly as possible. Within such, certainly, documentation of all and available methods to a given state of the field is possible, because the momentum of the clusters of fields at concern is relatively slow and docile. More specifically, for example, ever since [@valiant1984learnable] "A Theory of the Learnable", not much as been conducted and developed such revolutionary of the learning theory, and many current state-of-the-art can be considered of the restricted regime thereof, with added abstraction and specification semantics, and not removal of the root in any meaningful sense. 
+
+Such list is also not completed, and we will hope to gain or add more sufficient details later on, for example also our flagship new learning theory, and the framework of analysis thereof. For now, all topics listed above would be *classical* in classification. Should it be so, it is preferable to know that it is again, time-dependent, and our theory could be considered classical from another perspective. 

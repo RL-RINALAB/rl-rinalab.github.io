@@ -1,0 +1,4 @@
+---
+title: Statistical Learning Theory
+---
+We would start this chapter by formalizing what was known of the introductory session, and expand itself further onward to what is then known as classical **statistical learning theory**. So far, what we have been conjecturing is the model of $M$ to $C$ communication and replication. Extending this and formalizing such would be contingent in this chapter at first, and the mechanics surrounding it.    

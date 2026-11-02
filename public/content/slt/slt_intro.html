@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Amane Fujimiya">
+<meta name="dcterms.date" content="2026-06-29">
+<meta name="description" content="A simple analysis, a simple inquiry about statistical learning theory.">
+
+<title>3&nbsp; Introduction to Statistical Learning Theory – Learning Theory Coursebook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/slt/slt1.html" rel="next">
+<link href="../../content/convention.html" rel="prev">
+<link href="../../Figures/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-be5d01a035611e5caa05065215894e97.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0ef14ab1bd9b01543e0f27530284b958.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-be5d01a035611e5caa05065215894e97.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-eb74442b0e79ae1551dc4de997956be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7283a20a3cd2066f9543537ab90d0190.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-eb74442b0e79ae1551dc4de997956be0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 30,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slt/slt_intro.html">Classical Learning Theory</a></li><li class="breadcrumb-item"><a href="../../content/slt/slt_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Statistical Learning Theory</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Learning Theory Coursebook</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://amane-fujimiya.github.io/" title="RHINELAB" class="quarto-navigation-tool px-1" aria-label="RHINELAB"><i class="bi bi-house"></i></a>
+    <a href="https://github.com/Amane-Fujimiya/<repo>/tree/main/book/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code" target="_blank"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/convention.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Convention</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Classical Learning Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/slt/slt_intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Statistical Learning Theory</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/slt/slt1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Learning Theory</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-setting-of-classical-statistical-learning-theory" id="toc-the-setting-of-classical-statistical-learning-theory" class="nav-link active" data-scroll-target="#the-setting-of-classical-statistical-learning-theory"><span class="header-section-number">3.1</span> The setting of (classical) statistical learning theory</a>
+  <ul class="collapse">
+  <li><a href="#observations-and-the-statistics-of-data" id="toc-observations-and-the-statistics-of-data" class="nav-link" data-scroll-target="#observations-and-the-statistics-of-data"><span class="header-section-number">3.1.1</span> Observations and the statistics of data</a></li>
+  <li><a href="#learning-theoretic" id="toc-learning-theoretic" class="nav-link" data-scroll-target="#learning-theoretic"><span class="header-section-number">3.1.2</span> Learning theoretic</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Amane-Fujimiya/<repo>/edit/main/book/content/slt/slt_intro.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Amane-Fujimiya/<repo>/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/Amane-Fujimiya/<repo>/blob/main/book/content/slt/slt_intro.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/slt/slt_intro.html">Classical Learning Theory</a></li><li class="breadcrumb-item"><a href="../../content/slt/slt_intro.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Statistical Learning Theory</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to Statistical Learning Theory</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Amane Fujimiya </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 29, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 30, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Statistical Learning Theory</strong>, or SLT for short, is the flagship interpretation and framework for <em>learning theory</em>, further specific in diagnosis and identification of efforts utilized by artificial intelligence researcher to search for a framework of a learning problem - how do you make a non-biological substrate or construct created from such, to be adaptive, to extract and within given reasons, to replicate what the data suggests? Further onward, what is the domain and identification thereof, such that it extracts <em>structure underneath the information</em> - which is called in recent terms as <strong>generalization</strong>? Such question is posited by statistical learning theorist, and populated in a rather long time, prominently as Valiant <span class="citation" data-cites="valiant1984learnable">(<a href="#ref-valiant1984learnable" role="doc-biblioref">Valiant 1984</a>)</span>, V. Vapnik <span class="citation" data-cites="Vapnik1999-VAPTNO">(<a href="#ref-Vapnik1999-VAPTNO" role="doc-biblioref">Vapnik 1999</a>)</span>, <span class="citation" data-cites="STL_Hajek_Maxim_2021">(<a href="#ref-STL_Hajek_Maxim_2021" role="doc-biblioref">Hajek and Raginsky 2021</a>)</span>, Mohri and Afshin <span class="citation" data-cites="10.5555/2371238">(<a href="#ref-10.5555/2371238" role="doc-biblioref">Mohri et al. 2012</a>)</span> Kearn &amp; Umesh <span class="citation" data-cites="10.5555/200548">(<a href="#ref-10.5555/200548" role="doc-biblioref">Kearns and Vazirani 1994</a>)</span>, Peter <span class="citation" data-cites="Peters2017Elements">(<a href="#ref-Peters2017Elements" role="doc-biblioref">Peters et al. 2017</a>)</span>, and so on (like <span class="citation" data-cites="vonluxburg2008statisticallearningtheorymodels">(<a href="#ref-vonluxburg2008statisticallearningtheorymodels" role="doc-biblioref">Luxburg and Schoelkopf 2008</a>)</span>). As far as everyone can consider, it is a rather popular and deeply analyzed theory on its own.</p>
+<p>The forward introduction to the subtopic and the sub-branch field of learning theory to be, can be found in many textbooks, most often for example, Foundation of Machine Learning <span class="citation" data-cites="10.5555/2371238">(<a href="#ref-10.5555/2371238" role="doc-biblioref">Mohri et al. 2012</a>)</span>, Understanding Machine Learning: Theory and Practice <span class="citation" data-cites="10.5555/2621980">(<a href="#ref-10.5555/2621980" role="doc-biblioref">Shalev-Shwartz and Ben-David 2014</a>)</span>, and Statistical Learning Theory lecture notes by Bruce Hajek and Maxim Raginsky <span class="citation" data-cites="STL_Hajek_Maxim_2021">(<a href="#ref-STL_Hajek_Maxim_2021" role="doc-biblioref">Hajek and Raginsky 2021</a>)</span>. However, we can see that there exists many, often distinctive approach to interpreting and formalizing the statistical learning picture, such that would be dissected and analyze on first account of the following section, so that also to give you a sense of the <em>problem setting</em> that the theory is trying to produce. Thereby, conducting a survey on how the setting is settled and how the general broad approximating baseline is constructed, would be prominent in understanding different variations of such, because for once most of them are rather a simple re-resolution of a single core of assumption baseline on both structure availability, and analytical form, for example, the <strong>Neural Tangent Kernel</strong> <span class="citation" data-cites="Jacot:2018:NTK">(<a href="#ref-Jacot:2018:NTK" role="doc-biblioref">Jacot et al. 2018</a>)</span>, which in itself is a rough <strong>boundary-based learning theory</strong> - that is, the model of learning here is constructed by redefining the boundary of what is possible. Put more plainly - NTK is the reinterpretation of the old theory, and not a lot of advancements can be said as completed in recent times toward this direction.</p>
+<p>What, is that, and the purpose to provide an introduction and dive into the crude form of statistical learning theory is, and why would it be said that NTK is boundary-based, one might ask? Aside from reserving such spot to the further inquiry far and wide of the preceding chapters, it is also relevant and rather easy to diagnose on what is the response on such, because it is rather <em>unique</em> on this front.</p>
+<section id="the-setting-of-classical-statistical-learning-theory" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-setting-of-classical-statistical-learning-theory"><span class="header-section-number">3.1</span> The setting of (classical) statistical learning theory</h2>
+<p>Before such, we would like to get the reason and particular advantage on why the word ‘statistic’ is chosen here, as far as we can consider it ourselves. Furthermore, what to mean of the mathematical language sufficient to analyze it. There are indeed many way to think about the learning theory, including why we said it as a learning process, most typical to be considered in a game theoretic sense. But usually, in learning theory, we often start with the more constrained and limited case, like <em>classification</em>. For once, consider such as the following. For starter, we define the system of dataset as includes the <em>input space</em>, or the instances space, denoted by <span class="math inline">\(\mathcal{X}\)</span>, and the <em>output space</em>, as also termed label space, denoted by <span class="math inline">\(\mathcal{Y}\)</span>. <span class="math inline">\(\mathcal{D}=(\mathcal{X},\mathcal{Y})\)</span> is then the dataset in general, with many pairs <span class="math display">\[
+(X_1, Y_1), \dots (X_n, Y_n) \in (\mathcal{X}, \mathcal{Y})
+\]</span> such that there exists a <em>concept mapping</em> <span class="math inline">\(c: \mathcal{X}\to \mathcal{Y}\)</span> that is canonically the truth baseline of the dataset. In here, we suppose that <span class="math inline">\(c: \mathcal{X}\to \{0,1\}\)</span> for the binary classification case of the category label. The goal, is then, given a similarly constructed <em>hypothesis model space</em> <span class="math inline">\(\mathcal{H}\)</span>, for <span class="math inline">\(h\)</span> in this space, find the <em>approximately correct mapping</em> to <span class="math inline">\(c\in\mathcal{C}\)</span> now is the space of all available concept of this kind. The mapping <span class="math inline">\(h:\mathcal{X}\to \mathcal{Y}\)</span> is then called the <em>classifier</em>. Learning theory do this task by choosing a <strong>criterion</strong> - a fundamental evaluation standard, we can denote by <span class="math inline">\(g\)</span>. Then, this criterion is based on the following form: <span class="math display">\[
+g(h,\mathcal{D}[n]) = \bigwedge^{n}_{i=1} (h(X_{i})\land c(X_{i}))
+\]</span> The function <span class="math inline">\(g\)</span> then gauge the <em>correctness</em> <span class="math inline">\(\mathbb{I}_{h,c}\to \{0,1\}\)</span>, as the indicator function, of the hypothesis compare to the <em>supposed concept</em> <span class="math inline">\(c'\sqsubseteq c\)</span>; again, we note that this is a particular assumption thereof that should be said so that <span class="math inline">\(h\)</span> and <span class="math inline">\(c\)</span> architecture is the same. While we use <span class="math inline">\(\mathbb{I}_{h,c}\)</span>, it is only the numerical mapping on convenience, and can be seen purely from the logical side, for <span class="math inline">\((h(X_{i})\land c(X_{i}))\)</span> to land fully on <span class="math inline">\(\{T,F\}\)</span> of the classical truth value. Thus, the context of such would be evaluating between many similar <em>resultants</em> of truth values, being: <span class="math display">\[
+\{T,F\}_{1} \land \{T,F\}_{2} \land \{T,F\}_{3} \land \dots \land \{T,F\}_{n}
+\]</span> That said, the above generalized conjunction is a rather complicated term, and it compresses from the step of <span class="math inline">\(h(X_{i})\land c(X_{i})\)</span>. So, if we want to evaluate <span class="math inline">\(g\)</span> in a different way, for example, allow for quantification like <span class="math inline">\(90\%\)</span> correct, then we can try, for example, <span class="math display">\[
+g(h,\mathcal{D}[n]) = \bigwedge_{i=1}^{n} {\!}^{(C)} \Delta_{[0,1]} [h(X_{i}), c(X_{i})]
+\]</span> Here, <span class="math inline">\(\bigwedge_{i=1}^{n} {\!}^{(C)}\)</span> is the extended “part of it” operator, weaker than the total generalized conjunction, and here we switched to the <em>delta function</em> <span class="math inline">\(\Delta\)</span> on <span class="math inline">\([0,1]\)</span>, indicating fuzzy logic regime i.e.&nbsp;fractional truth. This criterion class is called <em>observation correctness</em>. Fundamentally speaking, we are gauging the condition of <span class="math inline">\(h\)</span> in runtime, and its result, so much so to say, if <span class="math inline">\(h\)</span> is fundamentally capable of being correct to specific <span class="math inline">\(c\)</span> reflected into its proxy of the dataset, given the <strong>exact form of the input space</strong> as setting, with little variations as possible. The above notion works on <em>quantification</em>, we subsume the quantities and qualities that describe the interaction, in on <span class="math inline">\(\mathcal{X}\subseteq(\mathbb{N}[0,1])^{n}\)</span>, for the first wedge conjunction, while the second one, we shift to <span class="math inline">\(\mathcal{X}\subseteq(\mathbb{R}[0,1])^{n}\)</span> for <em>dense, real number</em>. While elementary operations will not affect the properties that much, we note that <strong>quantification changes the configuration space</strong> and any operator acting on it, so there exists distinctively different between <span class="math inline">\(\mathbb{R}\)</span> and any given other space, like <span class="math inline">\(\mathbb{H}\)</span> of the hyperbolic space, or even just <span class="math inline">\(\mathbb{E}\)</span>, sometimes used as denoting for plain Euclidean space. If, one commit to the <strong>additivity aggregation</strong> action, by choosing to evaluate the criteria above as a sum of sort, thence, <span class="math display">\[
+\begin{split}
+    g(h,\mathcal{D}[n])
+    &amp;= \sum_{i=1}^{n} {\!}^{(C)} \Delta_{[0,1]} [h(X_{i}), c(X_{i})] \\
+    &amp; = \sum_{i=1}^{n} \Delta_{[0,1]} [h(X_{i}), c(X_{i})]. \\
+\end{split}
+\]</span> Under more simplification, if we take <span class="math inline">\(\Delta_{[0,1]}[\cdot]\)</span> as the operator on functionally real space, and use Euclidean notion, then, <span class="math display">\[
+\begin{split}
+    g(h,\mathcal{D}[n])&amp;= \sum_{i=1}^{n} [h(X_{i}) - c(X_{i})]
+    &amp;\propto \sum_{i=1}^{n} [c(X_{i}) - h(X_{i})]
+    &amp; \equiv \sum_{i=1}^{n} \mathbb{I}_{h,c}(h(X_{i})\neq c(X_{i}))
+\end{split}
+\]</span> Again, the last one is the <strong>indicator function</strong>. Under this scheme, we can see that, in particular, we now have the <em>total aggregated information</em> about the hypothesis and the concept, based solely on how there exists of the observations, and how closely hypothesis is in its way of replicating that resultants of such, regardless of the <em>inner working difference</em>, of which most certainly we do not have such knowledge of the true concept. If you want to take the <em>average</em>, i.e.&nbsp;from a certain view, you want to <em>sum them up, then divide them</em>, we then get the <em>averaging operator</em> <span class="math inline">\(\mathrm{Avg}\)</span>, such that, <span class="math display">\[
+R_{\mathcal{D}}=\mathrm{Avg}(g(h,\mathcal{D}[n])) = \frac{1}{n}\sum_{i=1}^{n} \mathbb{I}_{h,c}(h(X_{i})\neq c(X_{i}))
+\]</span> This, is the recovery mode of the famous <strong>empirical risk</strong>, here we call as the <strong>observational risk</strong> for an isomorphism of naming. Then, a <em>good model</em>, is when <span class="math inline">\(h^{*}\)</span></p>
+<p>From here, the tooling is now capable to host a variety of different purposes - one of which is the <strong>probabilistic view</strong> of the statistical learning language, and we should see how that goes. Here, we also remark it briefly, that this probabilistic view is <em>not fundamental</em>, nor it has any justification to confirm itself to be ontological of the present time. This implies us to trek with caution, to not overclaim on the principality and commonality of probabilistic interpretation, for its ontological conundrum solution.</p>
+<section id="probability-and-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="probability-and-statistics">Probability and statistics</h4>
+<p>Statistics, as said, is a fundamental way of aggregating and so forth, of <em>available information</em>, and the <em>carrier of such information</em>. Hence, there exists particularly two types: <em>statistically blind information</em>, and <em>statistically total information</em>. For example, a statement, given knowledge under the scheme of the carrier of knowledge being English language, talks about “I am ill”. The fundamental information carried is impossible and thus is blind to be handled on the statistics side. It is only a truth value, no more, no less in the form of its functionality, and it is informing us, of the <em>observation</em>, the important figure, the properties of such figure, not much else. Statistically total information would then require it to be <strong>quantified</strong> - that is, we have the following observation:</p>
+<div id="cnj-statistics-quantification" class="theorem conjecture">
+<p><span class="theorem-title"><strong>Conjecture 3.1 (Statistics)</strong></span> We say that <strong>statistics</strong> is the fundamental analytical framework of analysis, investigation, aggregation, extraction, knowing and of obtaining reasonable type of information in regard to such object, via its container of knowledge, called <em>statistical information</em> of itself or system of interest. Existentially, we posit for this information depends on <strong>(numerical) quantification</strong>, i.e.&nbsp;numbers and quantified construct. Any information without numerical quantification is called <em>statistically blind information</em> (SBI), while the opposite being <em>statistically total information</em> (STI), and there must exist a <strong>conversion</strong> for SBI to STI. We say SBI is then <strong>useful information</strong> in the context of statistics, and not so much elevating STI, however, STI is then <strong>actionable information</strong>.</p>
+</div>
+<p>From this view, here on out, we can conjecture or in sufficient description, permits the viewing point that <em>statistics</em> is the framework of the general study of <em>observations</em>, the set of those observations, and so on. Directly on the observations, is <em>statistics</em>. And when observations are in numerical presentation, it functions as the actionable form for us to derive any form of knowledge, hidden in those observations. In frequency analysis of observations, for example, often time whether discrete or continuous, and is available en masse of a single characteristic of a large number of individuals, often it is necessary to condense the data as far as possible, without losing much information of interest. Which, breeds to the art of <em>data presentation</em> - which is part of statistics. The term <em>distribution</em> here is also interesting. By far, this word here only means <em>counting, but a bit more over the top</em> - for example, if there exists 500 in 1000 cows you see in that particular space with red colour, you say the distribution there gives you 50% of them as red. Frequency, same thing, happening in a space, a place, and a setting. Not much probability there, is it?</p>
+<p>Insofar, we also have interesting observation, since for example, in most explanation thereof of statistics, the most mundane important part of it, is referring to “collection of procedures and principles for gaining and processing information” (see in <a href="https://www.statslab.cam.ac.uk/~rrw1/stats/Sa4.pdf">Here</a>, for a quick example on the very first page of the content). However, the other side, is most often, <em>probability</em>, i.e.&nbsp;for example as to make decisions when faced with ‘uncertainty’ - a concept only known in probability or rather being widely popularized of sort. So, where does probability fit into this place?</p>
+<section id="probability" class="level5">
+<h5 class="anchored" data-anchor-id="probability">Probability</h5>
+<p>While statistics down the same line can be said to concern with <em>data analysis</em> - on how to make sense of the data, to extract patterns presented into data. However, this process of data analysis, provides <em>questions</em> - questions about the general idea, framework, concept, truth, ‘what is going on’, and so on, of the statistics. For example, in the task of, say, analyzing on ‘how many cows are there in America, and what types of them are?’, the usual typical observation and such gives you a plenty bunch of grounds to ask further questions, like ‘why so’, ‘what is the relatable factor that determines this result we see that red cows are not so much?’, why it is so, what is the possible explanation? What can support more, what can we extract more about the information? In doing so, you are shifting from just looking and analyzing the data to <strong>interpreting</strong> it. Logic can do this part, for example, when you can state of a given fact - the fact that we aggregated that we are 50 people wet in a suit, is because, by a fact that it just rained. However, when you consider yourselves in the position of something more <em>unverifiable, uncertain</em>, for example, a man with hallucination, such logical line is then cannot be trusted. Because you <strong>do not know</strong>, thus consider the action forward is that - how much can I trust this? Similar in gambling where the odds and the thrill of such are in the unknown, where you are hoping for something, because you are withheld of such, what you do not know, you have to forgo a bit of the fact presented of the logical system. The recovery apparatus, partially or so, and many in one, is what we called, <strong>probability</strong>.</p>
+<p>Probability enters statistics as the interpretation of what it means. It covers, the logical line, under the notion of <em>uncertainty</em>, and the loss of logical consistency, as said of the above. In doing so, we can basically say so as of the following logical necessity. Suppose something, called <span class="math inline">\(A\)</span> happens to be able to get two absolute values. Either <span class="math inline">\(T\)</span>, or either <span class="math inline">\(F\)</span>. Non-probabilistic logic dictates that such can be separated to two statements, and the world is <strong>traceable</strong> and determinate enough, such that it can be concluded of “<span class="math inline">\(A\)</span> is <span class="math inline">\(T\)</span>”, or “<span class="math inline">\(A\)</span> is <span class="math inline">\(F\)</span>”. However under such circumstances of what we call that the system is uncertain, traceability and <strong>determinability</strong> are not sufficient, leading to us unable to make sure if the fact can be reflected and concluded in a singular form, or any given form. This is where probability comes in as the interpretation to interpret this particular non-collapsible phenomena as a system under uncertainty, as a system with <em>probable</em> nature.</p>
+<p>A probable nature of a system depends on two things. First, the determination of the <em>probable system</em> and what it constitutes. Insofar, we can consider the definition of <strong>probability</strong>, as now the noun of this particular property of any given system, as the following:</p>
+<div id="thm-probabiity" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3.1 (Probability)</strong></span> <strong>Probability</strong>, as for the notion of the property of being <em>probable</em> of a given system. Is an interpretation of such system as for its <strong>nature</strong>, or properties, or structures, and of its <strong>mechanisms</strong> under <em>observation</em> and <em>resolution</em>, for both terms mention and collude with the existence of said system, its <strong>states</strong>, and the different properties of itself independent of a given <strong>reference point</strong>, or an <strong>observing system</strong>.</p>
+</div>
+<p>The two main paradigms, frequentism and Bayesian probability, can be explained as the same thing, but under different reference point of the above definition philosophically speaking. Frequentist believes in their interpretation, from the focal point of the observing system, as <em>undisturbed</em> of the “parameters” and properties, structures underneath - governed by truly just the observation itself and the problem for them, as said, is the <em>purity</em> of the observation. Bayesian, on the other hand, thinks that such is mutable and dependent on the <em>non-convergence</em> of observing system. That is, frequentist believes in such implicitly defines all observing system and convergent to a same reference point, because such is irrelevant in the face of the observed system that they are inspecting. Bayesian, at that, allows for <em>pluralism of reference points</em>, such that there exists subjectivity, there exists <em>prior</em>, and there exists <em>posterior</em>. Many more interpretations of probability, like likelihoodism, or epistemic probability, works the same way of considering this particular system on <em>what under observations (existence) and the structural properties (system structure)</em> question of all, which is quite reflected in the above definition of the philosophical insight on what probability is.</p>
+<p>We do not start with any amount of mathematics, because such definition defines the <em>philosophy</em>, the <em>architecture</em> of the mathematics no less, and such will only follow, if we know and commit to a particular version of the world, the system, the notion of probability as considered, how we think of the <strong>precursor form</strong> that such space of all consideration works, and the properties of a given system and environment of interest for its interpretation, then comes the utilization of mathematics to denote, quantify, and abstract it away, with also the same length of concern as for the <em>actionability</em> of such terms. In fact, if we do not start with this, we forgo the <strong>invariant conjecture of mathematical language</strong>, that is, for a given object, no matter what language, only reflects part of what it is, under the limitation of a formal language, and under the limitation of the semantic of that language itself, and is then stuck with variations of calculus-probability, topological-probability and whatever you can say about it, different and separated.</p>
+</section>
+</section>
+<section id="the-probability-of-statistical-learning" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="the-probability-of-statistical-learning">The probability of statistical learning</h4>
+<p>Then, let us starts with the general lining of how, for now, the probability setting of the theory of statistical learning theory, and what is the often mainstream version of such. Kolmogorov interpretation, and so on, defines for you the second question, about the <em>constitutions</em> and <em>language of function</em> in mathematics, for the probability notion itself. We can then start, with the term probability space. A <strong>probability space</strong> is presented under Kolmogorov taxonomy as a triple <span class="math inline">\((\Omega,\mathcal{F},P)\)</span>, where <span class="math inline">\(\Omega\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is the set of outcomes, <span class="math inline">\(\mathcal{F}\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the set of events, and <span class="math inline">\(P\)</span> is a <em>relational space</em> that maps <span class="math inline">\(P:\Omega \times \mathcal{F}\to [0,1]\)</span> from probabilities to events<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. If <span class="math inline">\(\mathcal{F}\)</span> is designed to encapsulate also <span class="math inline">\(\Omega\)</span>, then <span class="math inline">\(P: \mathcal{F}\to [0,1]\)</span>. The space <span class="math inline">\((\mathcal{F},[0,1])\)</span> that the function maps to, is then denoted as <span class="math inline">\(\mathbb{P}^{*}\)</span>, the assignment space<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Under such view, it is easy to say what each of them means. First, <span class="math inline">\(\Omega\)</span> is presented here purely as the <strong>logical value that can be taken</strong>. If, it is a logical system, then the outcome would be <span class="math inline">\(\{0,1\}\)</span>. If it is height, it shall be something like a range <span class="math inline">\([a,b]\)</span>, or a finite amount of height value taken. Think is, <span class="math inline">\(\Omega\)</span> and its existence posit a truly presentable <em>presentation</em> and <em>enumeration</em> of all given outcomes that one can have, i.e.&nbsp;the number of reality that the system might chart. The limit, to this, is that it is entirely <em>subjective</em> - for those outcomes to be determined, you either subsume the infiniteness assumption of the universe with every outcome possible, or you return to a fixed <span class="math inline">\(n\)</span> observed outcome, and distinguish them for <span class="math inline">\(m\)</span> distinct observations of occurrence. Only then, you will have <span class="math inline">\(\Omega\)</span>, and you also have no idea if the space is actually big enough. Usually, <span class="math inline">\(\Omega\)</span> would even be quantified or so under <span class="math inline">\(\mathbb{R}\)</span>, in such case, again, there is nothing much about infinity, but ‘we are too lazy to count’. This is the <strong>first openness problem</strong> of the probability space.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Similarly, here, <span class="math inline">\(\mathcal{F}\)</span> is the list of events. There exists two assumptions here. First, is that the event <strong>must happen</strong>, and its observational resultant always lands inside <span class="math inline">\(\Omega\)</span>. This is a very strong assumption and it may or may not happen, can be deceived, can be corrupted, and so on. Second, is that it introduces the <em>second openness problem</em> - by looking into the determinancy of how such can happen. Simply speak, <span class="math inline">\(\mathcal{F}\)</span> is subjective - it constraints the <em>set of all selected events</em> rather than the list of all events in consideration. The path to <span class="math inline">\(\Omega\)</span> can be enumerately many more than <span class="math inline">\(\mathcal{F}\)</span>, however, one can constraint itself and the environment description enough, so that <span class="math inline">\(\mathcal{F}\)</span> can be computed and considered finite. But in doing so, one then must see that there exists other <span class="math inline">\(\mathcal{F}'&gt;\mathcal{F}\)</span>, and thus their system is not obviously applicable elsewhere. Furthermore, since it is such system of said nature, under noise in typical probabilistic setting, like <span class="math inline">\(\mathcal{N}(0,1)\)</span>, noise can mask system function, thus the existence of <span class="math inline">\(\mathcal{F}\)</span> will always be considered a flawed proxy instead.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;Lastly, <span class="math inline">\(P\)</span> assigns value on range <span class="math inline">\([0,1]\)</span> to the system. This action gives <em>possibility interpretation</em> to the system and restrict itself to that the outcome ‘will never happen’, and the outcome ‘will happen’ for a specific path of the event, in its extremal form. I think this is enough to say what restricts what, and how it constitutes the third openness problem.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Lastly, and we also see that the encapsulation of pairing <span class="math inline">\((\mathcal{F},[0,1])\)</span> is a real problem, and might introduce the <em>fourth openness problem</em> if tred carefully. However, this is a statistical learning theory coursebook. I would not bother you with that much details of probability.</p></div></div><p>Under this system, we assume typically, that <span class="math inline">\(\mathcal{F}\)</span> is a <span class="math inline">\(\sigma\)</span>-field (or called <span class="math inline">\(\sigma\)</span>-algebra), as a non-empty collection of a subset of <span class="math inline">\(\Omega\)</span> that satisfy its axiom. Without <span class="math inline">\(P\)</span>, <span class="math inline">\((\Omega, \mathcal{F})\)</span> is then called a measurable space. Why the name? Essentially, it is a space, went through a <em>quantification system</em>, and it is concretized as such, and is given a good enough space that is not pathological or so. The term <em>measurable</em> here is a problem. Because of the language, which is related to measure theory, its fundamental purpose is to <em>gauge the size</em> or <em>volume</em> of any given set it is taken on. Because the notion depends on the notion of <em>geometry</em> - whether you like it or abstract it away enough, the quantification exists in a singular form, yet because you are gauging size and volume, instances of such would be required to be able to add up consistently, and this is a particular problem, because measurability means you need to take into account of the many-parts, with a measurability of something, to be taken as references, or of a given ‘geometry’ or shape. This, is the <em>measure</em> that we choose to give to the measurable space, and in doing this, we have the assumption that this space, before a measure is colluded, is indeed capable of handling a <em>measure set function</em>, that is, <span class="math inline">\(\mu:\mathcal{F}\to \mathbb{R}\)</span>, with, for example,</p>
+<ol type="1">
+<li><span class="math inline">\(\mu(\Omega)=1\)</span>,</li>
+<li><span class="math inline">\(\mu(A)\geq \mu(\varnothing)=0\)</span> for all <span class="math inline">\(A\in \mathcal{F}\)</span>,</li>
+<li>if <span class="math inline">\(A_{i}\in\mathcal{F}\)</span> is a countable sequence of disjoint sets, then</li>
+</ol>
+<p><span class="math display">\[
+\mu(\cup_{i}A_{i}) = \sum_{i}\mu (A_i)
+\]</span> Using this space, we can now add interpretation to the above scheme of empirical risk and so on. The criterion of the statistical learning problem is mostly <span class="math inline">\(R(h,c)=R(h)\)</span>, that is such that, <span class="math display">\[
+R(h) = \mathbb{P}[h(X)\neq Y] \equiv \underset{h\in \mathcal{H}}{\mathbb{P}} [h(X)\sim c(X)] , \quad (X,Y) \in \mathcal{S}  
+\]</span> Under simple classification on binary value, the <em>outcome space</em>, is <span class="math inline">\(\Omega=\{0,1\}\)</span>. The events, then, are those under <span class="math inline">\(X\)</span>. Thus, <span class="math display">\[
+R(h) = \underset{X\in \mathcal{X}}{\mathbb{E}} [\Delta(h(X),c(X))] = \mathbb{E} [\mathbb{I}_{h,c}] = \mathbb{E} [\mathbb{I}_{h(X)\neq Y}]
+\]</span> We can decompose the probability <span class="math inline">\(\mathbb{P}\)</span> in here into <span class="math inline">\(\mathbb{P}(X)\times \mathbb{P}(Y|X)\)</span>, that is, the probability of <span class="math inline">\(X\)</span> existing, but also the one probability of the concept fitting there, given what is available of <span class="math inline">\(X\)</span>. We can also decompose this so much that, under the probabilistic view by then, <span class="math display">\[
+\mathbb{P}(g(X),Y) = \mathbb{P}(X) \times \mathbb{P}(Y) \times \mathbb{P}(Y|X) \times \mathbb{P}(X,Y) \times \mathbb{P}(X|g(X)) \times \mathbb{P} (\mathcal{H}|\mathcal{S}).
+\]</span> This is the probability settlement reached, under the hypothesis that the hardness of the hypothesis configuration, the probability that the event of non-fitting happens (that is, <span class="math inline">\(g(X)\neq Y\)</span> as stated to be an event), the abstract probability that the <em>input</em> and the <em>model</em> is even making sense,, the <em>sensibility</em> of the dataset itself, and the probability of the existence and density of the dataset are correlated.</p>
+</section>
+<section id="observations-and-the-statistics-of-data" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="observations-and-the-statistics-of-data"><span class="header-section-number">3.1.1</span> Observations and the statistics of data</h3>
+<p>As stated in the previous chapter about the classical <strong>theory of learning</strong>, a particular way of learning can be considered as to <em>learn from observation</em>. That is, we presuppose the existence of the object set <span class="math inline">\(\mathrm{Obj}[i][j]\)</span> for <span class="math inline">\([i]\)</span> components and <span class="math inline">\([j]\)</span> given <strong>exposure</strong> - the available ports that you can extract its status and what it presents at any particular moment of inspection, or so call the act of <em>observing</em> to exist and can be captured. Such then any result given from said act is called an <strong>observation</strong>. Such information is the reflection of the object at will, in which we will call the collection as <span class="math inline">\(\mathcal{S}\)</span>, or <strong>dataset</strong> which contains information about said interaction or state of the system including the object and its context of operation, and the optional ‘timestamp’ of the system and object’s <em>state</em>. This can be given by in the precondition that you have the exposure guaranteed as said and be measurable, and you observe the object in a surrounding <em>environment conditioning</em> of such, assuming you can separate this discretely, of which we would name it as the <em>domain separability hypothesis</em>, which is often used plenty in statistical distribution or so.</p>
+<p>These observations are important, because they define, or at least give us <em>information</em>, here means any given description or inquisition of such, about the object, so that for us to <em>know</em> about the object and its surrounding interest. Then, information here is to say of the criteria to <em>know</em> - that is, the necessity to capture something. Thence, we defined information per context by three factors:</p>
+<ul>
+<li>The <strong>knowing</strong> of interest.</li>
+<li>The <strong>scope</strong> of the knowing.</li>
+<li>The <strong>presentation</strong> of the knowledge.</li>
+</ul>
+<p>Thus, such is information, and observable provides information about a system’s state in a singular form, and in plural form comes ‘connected information’, that is, aggregated information coming out from this knowing. We can say it is the separation from <strong>first-level knowing</strong>, and the <strong>second-level knowing</strong>. For example, first-level knowing is the raw information given of its context, and its behaviours, while higher-level knowing is the informed picture if you get multiple information in together, thus creating a dynamic picture where you now can know ‘how it moves’, ‘what it becomes’, and ‘what it does’. Such is the importance of information and given such, observations, and the many-collection thereof, provides us with a canvas to extract its principles and so on. If a canvas of observations can now be called as <strong>observation space</strong>, then if the <strong>observation apparatus</strong>, we can say as <span class="math inline">\(\mathrm{ObA}(\cdot,\dots)[f]\)</span> by a framework or methodological system <span class="math inline">\(f\)</span> (also can be called utilization and so on), then if <span class="math inline">\(\mathrm{ObA}\)</span> capture everything possible of all information, all components and all congruent ‘being’ that the object posit of its existence, then we say the observation is <strong>complete</strong>. This is the <strong>apparatus completeness</strong> of the observable theory, and if a system is with observations <span class="math inline">\(w\in \mathcal{S}\)</span>, then if properties from domain <span class="math inline">\(f\)</span> can capture everything such that there exists a <strong>mutation process</strong> <span class="math inline">\(\mathrm{Mu}(w,f,\dots)\)</span> that mutates the system using information extracted from an <strong>observation extractor</strong> <span class="math inline">\(\mathrm{Extr(\mathcal{S},\dots)}=\mathrm{Prop}_{f,\mathcal{S}}(\mathrm{Obj})\)</span> that defines the components of <span class="math inline">\(\mathrm{Obj}\)</span>, and the next observable after <span class="math inline">\(\mathrm{Mu}\)</span>, i.e.&nbsp;<span class="math inline">\(w'\)</span>, can be fully explained by what extracted i.e.&nbsp;<span class="math inline">\(\mathrm{Prop}\)</span>, then we say the apparatus and the underlying analytical engine is given <strong>domain completeness</strong>. Given such, we can say per perspective, observable is the silver lining of any given process or system sought to either analyze it, or at least capture <em>what it is</em>. Including logic, including facts, including situations or any form of actions toward certain setting.</p>
+<p>What is the observation of its properties, then? The observation contains many properties, however, again, most of the time under specification and of concrete understanding, observation can be described loosely, and imperfectly congruently minimal as the following substrate. We note that this is not primitive nor it is fundamentally irreducible, it is merely subjective inference and totality of such, being a flawed by-this-point observations, ironically, of the notion of observations thereof.</p>
+<section id="language-and-its-actionability" class="level4">
+<h4 class="anchored" data-anchor-id="language-and-its-actionability">Language and its actionability</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>About language and its epistemology
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We do have to put a cautionary tale sign on top of this, for distinction and de-complication or decoupling of sort about the importance of language. Specifically, it is called, in particular, as the problem of <strong>groundlessness</strong> of the language. Arguably speaking, language in itself is a form of information carriage. Under such view, the meaning of the language comes from the reality it is subjected to encode, <strong>by and from the writer</strong> whom wrote it down. In such sense, the origin of the language’s meaning is the one using it, not the language. Without the reader, the language bears no meaning. Without the writer, the language does not exist. Actionable language, in such taxonomy, is the reader on its own, so much to execute its own command given - and thus if the writer dies, the system will still retain its control and meaning under existence.</p>
+</div>
+</div>
+<p>Language has many forms, and in a sense it is used to provide information, but also <strong>action</strong> and procedure per se, to a given engine or interpretability framework, to <strong>actionalize</strong> the system toward a given state or configuration. We then can separate <em>analytical information</em>, information that gives rise to description and knowledge about a system, and <em>actionable information</em>, those that functions as also <strong>instruction</strong> or informant to, say, the course of action or guideline thereof. Those are two fundamental discrete types of information in the respective viewline of what they contain, and how active they are. Most information given in dataset are to be said, analytical information, while the language specification of machine learning model, can be considered as actionable information - they contain the function and describe the working of the system, of the model, and else.</p>
+<p>That said, the view can be also reverted. For some, actionable information can also function and be interpreted as analytical, because of the apparatus of observation. For example, one can see the function <code>getThingsdone()</code> and be informed of what is the shape of the model, why it is designed to be this way, or such. On the flip side, analytical information interestingly, cannot be transferred or analyzed, or in any given sense, actionalized smoothly into actionable information, because their mode of being is informative, and the transition of such requires an additional layer of interpretation and extraction to know what to do with said information. Such is the <em>asymmetry of information archetype</em>, and within such, we can see that embedding information with action is often sometimes more informative than the inverse of sort, if given plainly of ‘fastest way to transform’ information. That said, it is also more so of the ‘ease of operationalize information’, and this comes at a place we can say as the <em>no-free-lunch</em> of information archetype. Loosely speaking,</p>
+<blockquote class="blockquote">
+<p>For any given form of analytical information, description comes at the cost of more baggage for extensions and action-forming thereby, hence theoretical infinite actionable course. Actionable information, on the other side, provides ease of transformation and thereof, while provide exponentially and theoretical infinite many interpretations, by virtue of infinite meaning ‘does not bother to count’.</p>
+</blockquote>
+<p>Such is the tradeoff that would be at least <em>symmetric</em> to the given archetypical separation there is. However, the operational cost is <em>immensely asymmetric</em> toward the analytical side, which is often lower and provide more straight-forward semantic. That is, when you run the system, this comes as the <em>Eulerian asymmetry</em> on operational cost, that information with execution semantic, somehow, provide adequate execution capacity, while maintaining infinite interpretation. Meanwhile, data of plain descriptions and no action, contains infinite course of action on nondeterministic (by this we mean, per instruction of what to do) ground, and contain the further indeterminacy of the system component in runtime - knowing a car has four wheels, and many things, does not render it useful to see it as a car, essentially. The line between these two archetypes are very blurry, and often we would see many to be said and to be seen as a mix of both. However, languages and so on that opt for the extreme, will present these tradeoffs. The question, then, is that whether we can find a language that is sufficient to describe the observable, given in the previous section, that can provide us with both? And can we find a language, that can construct a given being, that retains both semantic on operations, and its inherent meaning? Those are two open problems, and the prospect of the second one failing, is much higher than the first. And then, the third problem to be - can one information type full describe the others and functions as the other?</p>
+</section>
+</section>
+<section id="learning-theoretic" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="learning-theoretic"><span class="header-section-number">3.1.2</span> Learning theoretic</h3>
+<p>The goal of learning theory, or the baseline of what to be called as <strong>machine learning</strong> for the object as the computational machine, and the action of learning on top of it, can be defined rather by the need and necessity that given the usage of machine learning. In general, it can be considered useful to use machine learning in the specific tangent line of a setting where:</p>
+<ul>
+<li>It is too complex to program, because of either observability impossibility that is, the collapse of the domain separability hypothesis, and the collapse of observation discreteness.</li>
+<li>The <strong>domain completeness</strong> is not satisfied, which is the majority of all cases.</li>
+<li>Inexplainable phenomena or process, for example something that fails to be secularized and generalized using the information format of <em>human language</em> to be reduced or specified to finite steps, or any given descriptions that is actionable.</li>
+</ul>
+<hr>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-STL_Hajek_Maxim_2021" class="csl-entry" role="listitem">
+Hajek, Bruce, and Maxim Raginsky. 2021. <em>Statistical Learning Theory</em>. Vol. 1. <a href="https://maxim.ece.illinois.edu/teaching/SLT/">https://maxim.ece.illinois.edu/teaching/SLT/</a>.
+</div>
+<div id="ref-Jacot:2018:NTK" class="csl-entry" role="listitem">
+Jacot, Arthur, François Gabriel, and Clément Hongler. 2018. <span>“Neural Tangent Kernel: Convergence and Generalization in Neural Networks.”</span> <em>Advances in Neural Information Processing Systems (NeurIPS)</em>.
+</div>
+<div id="ref-10.5555/200548" class="csl-entry" role="listitem">
+Kearns, Michael J., and Umesh V. Vazirani. 1994. <em>An Introduction to Computational Learning Theory</em>. MIT Press.
+</div>
+<div id="ref-vonluxburg2008statisticallearningtheorymodels" class="csl-entry" role="listitem">
+Luxburg, Ulrike von, and Bernhard Schoelkopf. 2008. <em>Statistical Learning Theory: Models, Concepts, and Results</em>. <a href="https://arxiv.org/abs/0810.4752">https://arxiv.org/abs/0810.4752</a>.
+</div>
+<div id="ref-10.5555/2371238" class="csl-entry" role="listitem">
+Mohri, Mehryar, Afshin Rostamizadeh, and Ameet Talwalkar. 2012. <em>Foundations of Machine Learning</em>. The MIT Press.
+</div>
+<div id="ref-Peters2017Elements" class="csl-entry" role="listitem">
+Peters, Jonas, Dominik Janzing, and Bernhard Schölkopf. 2017. <em>Elements of Causal Inference: Foundations and Learning Algorithms</em>. MIT Press. <a href="https://doi.org/10.5555/3202377">https://doi.org/10.5555/3202377</a>.
+</div>
+<div id="ref-10.5555/2621980" class="csl-entry" role="listitem">
+Shalev-Shwartz, Shai, and Shai Ben-David. 2014. <em>Understanding Machine Learning: From Theory to Algorithms</em>. Cambridge University Press.
+</div>
+<div id="ref-valiant1984learnable" class="csl-entry" role="listitem">
+Valiant, Leslie G. 1984. <span>“A Theory of the Learnable.”</span> <em>Communications of the ACM</em> 27 (11): 1134–42. <a href="https://doi.org/10.1145/1968.1972">https://doi.org/10.1145/1968.1972</a>.
+</div>
+<div id="ref-Vapnik1999-VAPTNO" class="csl-entry" role="listitem">
+Vapnik, Vladimir. 1999. <em>The Nature of Statistical Learning Theory</em>. Springer: New York.
+</div>
+</div>
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="rhinelab-tools">
+/* RHINELAB docs tools: sidebar filter, expand/collapse/locate, remembered
+   section state, Sphinx-style page panel, keyboard nav, code language labels.
+   No dependencies; uses Bootstrap's Collapse if present. */
+(() => {
+  "use strict";
+
+  const onReady = (fn) =>
+    document.readyState === "loading"
+      ? document.addEventListener("DOMContentLoaded", () => setTimeout(fn, 0))
+      : setTimeout(fn, 0);
+
+  // one storage namespace per site (several sites can share a domain)
+  const siteRoot = (() => {
+    const off = document.querySelector('meta[name="quarto:offset"]');
+    try { return new URL(off ? off.content : "./", location.href).pathname; }
+    catch { return "/"; }
+  })();
+  const store = {
+    key: "rhinelab:sidebar:" + siteRoot,
+    read() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; } },
+    write(v) { try { localStorage.setItem(this.key, JSON.stringify(v)); } catch {} },
+  };
+
+  const el = (tag, attrs = {}, html = "") => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (html) n.innerHTML = html;
+    return n;
+  };
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const clean = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const isTyping = (t) => t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+
+  onReady(() => {
+    const sidebar = document.getElementById("quarto-sidebar");
+    const menu = sidebar && sidebar.querySelector(".sidebar-menu-container");
+    const prevLink = document.querySelector(".page-navigation .nav-page-previous a.pagination-link");
+    const nextLink = document.querySelector(".page-navigation .nav-page-next a.pagination-link");
+
+    // ── code blocks: language label ────────────────────────────────────
+    const skip = new Set(["sourceCode", "code-with-copy", "number-lines", "numberSource", "code-annotation-code", "cell-code"]);
+    document.querySelectorAll("div.sourceCode > pre.sourceCode").forEach((pre) => {
+      const lang = [...pre.classList].find((c) => !skip.has(c));
+      if (lang) pre.parentElement.setAttribute("data-lang", lang === "r" ? "R" : lang);
+    });
+
+    // ── keyboard: [ ] prev/next page, t = filter ───────────────────────
+    let filterInput = null;
+    document.addEventListener("keydown", (e) => {
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || isTyping(e.target)) return;
+      if (e.key === "[" && prevLink) { e.preventDefault(); location.href = prevLink.href; }
+      else if (e.key === "]" && nextLink) { e.preventDefault(); location.href = nextLink.href; }
+      else if (e.key === "t" && filterInput && filterInput.offsetParent !== null) {
+        e.preventDefault(); filterInput.focus(); filterInput.select();
+      }
+    });
+
+    if (!sidebar || !menu) return;
+
+    // ── section open/close helpers ─────────────────────────────────────
+    const sections = () => [...menu.querySelectorAll("ul.sidebar-section[id]")];
+    const triggersFor = (ul) => sidebar.querySelectorAll(`[data-bs-target="#${CSS.escape(ul.id)}"]`);
+    const setOpen = (ul, open) => {
+      ul.classList.toggle("show", open);
+      triggersFor(ul).forEach((a) => {
+        a.setAttribute("aria-expanded", String(open));
+        a.classList.toggle("collapsed", !open);
+      });
+    };
+    const holdsActive = (ul) => !!ul.querySelector("a.sidebar-link.active");
+    const openAncestors = (node) => {
+      let ul = node.closest("ul.sidebar-section");
+      while (ul) { setOpen(ul, true); ul = ul.parentElement.closest("ul.sidebar-section"); }
+    };
+
+    // remember what the reader opened/closed, across pages
+    let state = store.read();
+    sections().forEach((ul) => {
+      if (!(ul.id in state)) return;
+      if (state[ul.id] === false && holdsActive(ul)) return; // never hide the current page
+      setOpen(ul, state[ul.id]);
+    });
+    let filtering = false;
+    const remember = (e) => {
+      const ul = e.target;
+      if (filtering || !ul.classList || !ul.classList.contains("sidebar-section") || !ul.id) return;
+      state[ul.id] = e.type === "shown.bs.collapse";
+      store.write(state);
+    };
+    sidebar.addEventListener("shown.bs.collapse", remember);
+    sidebar.addEventListener("hidden.bs.collapse", remember);
+
+    // ── toolbar: filter + expand/collapse/locate ───────────────────────
+    const bar = el("div", { class: "mt-sb-toolbar", role: "toolbar", "aria-label": "Navigation tools" });
+    bar.innerHTML =
+      '<label class="mt-sb-filter"><i class="bi bi-funnel" aria-hidden="true"></i>' +
+      '<input type="search" placeholder="Filter pages" aria-label="Filter navigation" autocomplete="off" spellcheck="false">' +
+      "<kbd>t</kbd></label>" +
+      '<button type="button" class="mt-sb-btn" data-act="expand" title="Expand all"><i class="bi bi-arrows-expand"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="collapse" title="Collapse all"><i class="bi bi-arrows-collapse"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="locate" title="Reveal current page"><i class="bi bi-crosshair"></i></button>';
+    menu.parentNode.insertBefore(bar, menu);
+    filterInput = bar.querySelector("input");
+    const empty = el("div", { class: "mt-sb-empty", hidden: "" }, "no matching pages");
+    menu.appendChild(empty);
+
+    // scroll only the sidebar (scrollIntoView would also move the page)
+    const centerIn = (a, smooth) => {
+      const r = a.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      sidebar.scrollTo({ top: sidebar.scrollTop + (r.top - s.top) - s.height / 2 + r.height / 2,
+                         behavior: smooth ? "smooth" : "auto" });
+    };
+    const locate = () => {
+      const a = menu.querySelector("a.sidebar-link.active");
+      if (!a) return;
+      openAncestors(a);
+      centerIn(a, true);
+      a.focus({ preventScroll: true });
+    };
+
+    bar.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-act]");
+      if (!btn) return;
+      const act = btn.dataset.act;
+      if (act === "locate") return locate();
+      const open = act === "expand";
+      sections().forEach((ul) => { setOpen(ul, open); state[ul.id] = open; });
+      if (!open) { const a = menu.querySelector("a.sidebar-link.active"); if (a) openAncestors(a); }
+      store.write(state);
+    });
+
+    // filter
+    const items = [...menu.querySelectorAll("li.sidebar-item")];
+    const labelOf = (li) => {
+      const a = li.querySelector(":scope > .sidebar-item-container > a.sidebar-item-text");
+      return clean(a ? a.textContent : "").toLowerCase();
+    };
+    const labels = new Map(items.map((li) => [li, labelOf(li)]));
+    let snapshot = null;
+
+    const runFilter = (raw) => {
+      const terms = clean(raw).toLowerCase().split(" ").filter(Boolean);
+      if (!terms.length) {
+        filtering = false;
+        items.forEach((li) => li.classList.remove("mt-hide", "mt-match"));
+        if (snapshot) { snapshot.forEach(([ul, open]) => setOpen(ul, open)); snapshot = null; }
+        empty.hidden = true;
+        return;
+      }
+      if (!snapshot) snapshot = sections().map((ul) => [ul, ul.classList.contains("show")]);
+      filtering = true;
+      items.forEach((li) => { li.classList.add("mt-hide"); li.classList.remove("mt-match"); });
+      let hits = 0;
+      items.forEach((li) => {
+        const label = labels.get(li);
+        if (!terms.every((t) => label.includes(t))) return;
+        hits++;
+        li.classList.remove("mt-hide");
+        li.classList.add("mt-match");
+        const own = li.querySelector(":scope > ul.sidebar-section");
+        if (own) { setOpen(own, true); own.querySelectorAll("li.sidebar-item").forEach((d) => d.classList.remove("mt-hide")); }
+        let p = li.parentElement.closest("li.sidebar-item");
+        while (p) {
+          p.classList.remove("mt-hide");
+          const ul = p.querySelector(":scope > ul.sidebar-section");
+          if (ul) setOpen(ul, true);
+          p = p.parentElement.closest("li.sidebar-item");
+        }
+      });
+      empty.hidden = hits > 0;
+    };
+
+    filterInput.addEventListener("input", () => runFilter(filterInput.value));
+    filterInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { filterInput.value = ""; runFilter(""); filterInput.blur(); }
+      else if (e.key === "Enter") {
+        const first = menu.querySelector("li.mt-match > .sidebar-item-container > a.sidebar-link[href]");
+        if (first) location.href = first.href;
+      } else if (e.key === "ArrowDown") {
+        const first = menu.querySelector("li.sidebar-item:not(.mt-hide) a.sidebar-link[href]");
+        if (first) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // ↑/↓ moves between visible links inside the tree
+    menu.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const links = [...menu.querySelectorAll("a.sidebar-link[href]")].filter((a) => a.offsetParent !== null);
+      const i = links.indexOf(document.activeElement);
+      if (i < 0) return;
+      e.preventDefault();
+      const j = e.key === "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1;
+      if (j < 0) filterInput.focus(); else links[j].focus();
+    });
+
+    // ── page panel (Sphinx: previous / next topic, this page, meta) ────
+    const panel = el("div", { class: "mt-sb-panel" });
+    const topic = (a, dir, label) =>
+      `<section class="mt-sb-block"><h6>${label}</h6><a class="mt-topic" href="${a.getAttribute("href")}">` +
+      `<span class="mt-dir">${dir}</span><span>${esc(clean(a.textContent))}</span></a></section>`;
+    let html = "";
+    if (prevLink) html += topic(prevLink, "[", "Previous topic");
+    if (nextLink) html += topic(nextLink, "]", "Next topic");
+
+    const actionsBox = document.querySelector("#quarto-margin-sidebar .toc-actions") ||
+                       document.querySelector("nav[role='doc-toc'] .toc-actions");
+    const actions = actionsBox ? [...actionsBox.querySelectorAll("a")] : [];
+    const icon = (t) => /edit/i.test(t) ? "pencil-square" : /issue|bug/i.test(t) ? "bug" : /source/i.test(t) ? "file-earmark-code" : "box-arrow-up-right";
+    html += '<section class="mt-sb-block"><h6>This page</h6><ul>';
+    actions.forEach((a) => {
+      const t = clean(a.textContent);
+      html += `<li><a href="${a.getAttribute("href")}"${a.target ? ` target="${a.target}"` : ""}><i class="bi bi-${icon(t)}"></i>${esc(t)}</a></li>`;
+    });
+    html += '<li><button type="button" class="mt-linklike" data-act="copy-link"><i class="bi bi-link-45deg"></i><span>Copy link</span></button></li>';
+    html += "</ul></section>";
+
+    const main = document.querySelector("main.content");
+    if (main) {
+      const body = main.cloneNode(true);
+      body.querySelectorAll("pre, code, script, style, .MathJax, mjx-container, .quarto-title-block, nav, .footnotes").forEach((n) => n.remove());
+      const words = (body.textContent.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length;
+      const mod = document.querySelector(".quarto-title-meta .date-modified, p.date-modified");
+      const secs = main.querySelectorAll("section.level2").length;
+      html += '<section class="mt-sb-block mt-sb-meta"><h6>Page</h6><dl>';
+      if (mod) html += `<dt>Modified</dt><dd>${esc(clean(mod.textContent))}</dd>`;
+      html += `<dt>Length</dt><dd>${words.toLocaleString()} words · ~${Math.max(1, Math.round(words / 220))} min</dd>`;
+      if (secs) html += `<dt>Sections</dt><dd>${secs}</dd>`;
+      html += "</dl></section>";
+    }
+    html += '<div class="mt-sb-keys"><kbd>t</kbd> filter · <kbd>[</kbd> <kbd>]</kbd> prev/next · <kbd>s</kbd> search</div>';
+    panel.innerHTML = html;
+    menu.after(panel);
+
+    panel.addEventListener("click", async (e) => {
+      const btn = e.target.closest('[data-act="copy-link"]');
+      if (!btn) return;
+      const span = btn.querySelector("span");
+      try { await navigator.clipboard.writeText(location.href.split("#")[0]); span.textContent = "Copied"; }
+      catch { span.textContent = "Copy failed"; }
+      setTimeout(() => (span.textContent = "Copy link"), 1400);
+    });
+
+    // keep the current page in view on load (without animation)
+    const active = menu.querySelector("a.sidebar-link.active");
+    if (active) {
+      const r = active.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      if (r.top < s.top || r.bottom > s.bottom) centerIn(active, false);
+    }
+  });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/amane-fujimiya\.github\.io\/<repo>\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../content/convention.html" class="pagination-link" aria-label="Convention">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Convention</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../content/slt/slt1.html" class="pagination-link" aria-label="Statistical Learning Theory">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Learning Theory</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Introduction to Statistical Learning Theory</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "A simple analysis, a simple inquiry about statistical learning theory."</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Amane Fujimiya"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-06-29"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> "2026-06-30"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>**Statistical Learning Theory**, or SLT for short, is the flagship interpretation and framework for *learning theory*, further specific in diagnosis and identification of efforts utilized by artificial intelligence researcher to search for a framework of a learning problem - how do you make a non-biological substrate or construct created from such, to be adaptive, to extract and within given reasons, to replicate what the data suggests? Further onward, what is the domain and identification thereof, such that it extracts *structure underneath the information* - which is called in recent terms as **generalization**? Such question is posited by statistical learning theorist, and populated in a rather long time, prominently as Valiant <span class="co">[</span><span class="ot">@valiant1984learnable</span><span class="co">]</span>, V. Vapnik <span class="co">[</span><span class="ot">@Vapnik1999-VAPTNO</span><span class="co">]</span>, <span class="co">[</span><span class="ot">@STL_Hajek_Maxim_2021</span><span class="co">]</span>, Mohri and Afshin <span class="co">[</span><span class="ot">@10.5555/2371238</span><span class="co">]</span> Kearn &amp; Umesh <span class="co">[</span><span class="ot">@10.5555/200548</span><span class="co">]</span>, Peter <span class="co">[</span><span class="ot">@Peters2017Elements</span><span class="co">]</span>, and so on (like <span class="co">[</span><span class="ot">@vonluxburg2008statisticallearningtheorymodels</span><span class="co">]</span>). As far as everyone can consider, it is a rather popular and deeply analyzed theory on its own. </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The forward introduction to the subtopic and the sub-branch field of learning theory to be, can be found in many textbooks, most often for example, Foundation of Machine Learning <span class="co">[</span><span class="ot">@10.5555/2371238</span><span class="co">]</span>, Understanding Machine Learning: Theory and Practice <span class="co">[</span><span class="ot">@10.5555/2621980</span><span class="co">]</span>, and Statistical Learning Theory lecture notes by Bruce Hajek and Maxim Raginsky <span class="co">[</span><span class="ot">@STL_Hajek_Maxim_2021</span><span class="co">]</span>. However, we can see that there exists many, often distinctive approach to interpreting and formalizing the statistical learning picture, such that would be dissected and analyze on first account of the following section, so that also to give you a sense of the *problem setting* that the theory is trying to produce. Thereby, conducting a survey on how the setting is settled and how the general broad approximating baseline is constructed, would be prominent in understanding different variations of such, because for once most of them are rather a simple re-resolution of a single core of assumption baseline on both structure availability, and analytical form, for example, the **Neural Tangent Kernel** [@Jacot:2018:NTK], which in itself is a rough **boundary-based learning theory** - that is, the model of learning here is constructed by redefining the boundary of what is possible. Put more plainly - NTK is the reinterpretation of the old theory, and not a lot of advancements can be said as completed in recent times toward this direction. </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>What, is that, and the purpose to provide an introduction and dive into the crude form of statistical learning theory is, and why would it be said that NTK is boundary-based, one might ask? Aside from reserving such spot to the further inquiry far and wide of the preceding chapters, it is also relevant and rather easy to diagnose on what is the response on such, because it is rather *unique* on this front. </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## The setting of (classical) statistical learning theory</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Before such, we would like to get the reason and particular advantage on why the word 'statistic' is chosen here, as far as we can consider it ourselves. Furthermore, what to mean of the mathematical language sufficient to analyze it. There are indeed many way to think about the learning theory, including why we said it as a learning process, most typical to be considered in a game theoretic sense. But usually, in learning theory, we often start with the more constrained and limited case, like *classification*. For once, consider such as the following. For starter, we define the system of dataset as includes the *input space*, or the instances space, denoted by $\mathcal{X}$, and the *output space*, as also termed label space, denoted by $\mathcal{Y}$. $\mathcal{D}=(\mathcal{X},\mathcal{Y})$ is then the dataset in general, with many pairs</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>(X_1, Y_1), \dots (X_n, Y_n) \in (\mathcal{X}, \mathcal{Y}) </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>such that there exists a *concept mapping* $c: \mathcal{X}\to \mathcal{Y}$ that is canonically the truth baseline of the dataset. In here, we suppose that $c: \mathcal{X}\to \{0,1\}$ for the binary classification case of the category label. The goal, is then, given a similarly constructed *hypothesis model space* $\mathcal{H}$, for $h$ in this space, find the *approximately correct mapping* to $c\in\mathcal{C}$ now is the space of all available concept of this kind. The mapping $h:\mathcal{X}\to \mathcal{Y}$ is then called the *classifier*. Learning theory do this task by choosing a **criterion** - a fundamental evaluation standard, we can denote by $g$. Then, this criterion is based on the following form: </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>g(h,\mathcal{D}<span class="co">[</span><span class="ot">n</span><span class="co">]</span>) = \bigwedge^{n}_{i=1} (h(X_{i})\land c(X_{i})) </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>The function $g$ then gauge the *correctness* $\mathbb{I}_{h,c}\to \{0,1\}$, as the indicator function, of the hypothesis compare to the *supposed concept* $c'\sqsubseteq c$; again, we note that this is a particular assumption thereof that should be said so that $h$ and $c$ architecture is the same. While we use $\mathbb{I}_{h,c}$, it is only the numerical mapping on convenience, and can be seen purely from the logical side, for $(h(X_{i})\land c(X_{i}))$ to land fully on $\{T,F\}$ of the classical truth value. Thus, the context of such would be evaluating between many similar *resultants* of truth values, being:</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="sc">\{</span>T,F<span class="sc">\}</span>_{1} \land \{T,F\}_{2} \land \{T,F\}_{3} \land \dots \land \{T,F\}_{n}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>That said, the above generalized conjunction is a rather complicated term, and it compresses from the step of $h(X_{i})\land c(X_{i})$. So, if we want to evaluate $g$ in a different way, for example, allow for quantification like $90\%$ correct, then we can try, for example, </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>g(h,\mathcal{D}<span class="co">[</span><span class="ot">n</span><span class="co">]</span>) = \bigwedge_{i=1}^{n} {<span class="sc">\!</span>}^{(C)} \Delta_{<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>} <span class="co">[</span><span class="ot">h(X_{i}), c(X_{i})</span><span class="co">]</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>Here, $\bigwedge_{i=1}^{n} {<span class="sc">\!</span>}^{(C)}$ is the extended "part of it" operator, weaker than the total generalized conjunction, and here we switched to the *delta function* $\Delta$ on $[0,1]$, indicating fuzzy logic regime i.e. fractional truth. This criterion class is called *observation correctness*. Fundamentally speaking, we are gauging the condition of $h$ in runtime, and its result, so much so to say, if $h$ is fundamentally capable of being correct to specific $c$ reflected into its proxy of the dataset, given the **exact form of the input space** as setting, with little variations as possible. The above notion works on *quantification*, we subsume the quantities and qualities that describe the interaction, in on $\mathcal{X}\subseteq(\mathbb{N}[0,1])^{n}$, for the first wedge conjunction, while the second one, we shift to $\mathcal{X}\subseteq(\mathbb{R}[0,1])^{n}$ for *dense, real number*. While elementary operations will not affect the properties that much, we note that **quantification changes the configuration space** and any operator acting on it, so there exists distinctively different between $\mathbb{R}$ and any given other space, like $\mathbb{H}$ of the hyperbolic space, or even just $\mathbb{E}$, sometimes used as denoting for plain Euclidean space. If, one commit to the **additivity aggregation** action, by choosing to evaluate the criteria above as a sum of sort, thence, </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    g(h,\mathcal{D}<span class="co">[</span><span class="ot">n</span><span class="co">]</span>) </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    &amp;= \sum_{i=1}^{n} {<span class="sc">\!</span>}^{(C)} \Delta_{<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>} <span class="co">[</span><span class="ot">h(X_{i}), c(X_{i})</span><span class="co">]</span> <span class="sc">\\</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    &amp; = \sum_{i=1}^{n} \Delta_{<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>} <span class="co">[</span><span class="ot">h(X_{i}), c(X_{i})</span><span class="co">]</span>. <span class="sc">\\</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Under more simplification, if we take $\Delta_{<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>}<span class="co">[</span><span class="ot">\cdot</span><span class="co">]</span>$ as the operator on functionally real space, and use Euclidean notion, then, </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    g(h,\mathcal{D}<span class="co">[</span><span class="ot">n</span><span class="co">]</span>)&amp;= \sum_{i=1}^{n} <span class="co">[</span><span class="ot">h(X_{i}) - c(X_{i})</span><span class="co">]</span> </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    &amp;\propto \sum_{i=1}^{n} <span class="co">[</span><span class="ot">c(X_{i}) - h(X_{i})</span><span class="co">]</span> </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    &amp; \equiv \sum_{i=1}^{n} \mathbb{I}_{h,c}(h(X_{i})\neq c(X_{i}))</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>\end{split}</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Again, the last one is the **indicator function**. Under this scheme, we can see that, in particular, we now have the *total aggregated information* about the hypothesis and the concept, based solely on how there exists of the observations, and how closely hypothesis is in its way of replicating that resultants of such, regardless of the *inner working difference*, of which most certainly we do not have such knowledge of the true concept. If you want to take the *average*, i.e. from a certain view, you want to *sum them up, then divide them*, we then get the *averaging operator* $\mathrm{Avg}$, such that, </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>R_{\mathcal{D}}=\mathrm{Avg}(g(h,\mathcal{D}<span class="co">[</span><span class="ot">n</span><span class="co">]</span>)) = \frac{1}{n}\sum_{i=1}^{n} \mathbb{I}_{h,c}(h(X_{i})\neq c(X_{i}))</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>This, is the recovery mode of the famous **empirical risk**, here we call as the **observational risk** for an isomorphism of naming. Then, a *good model*, is when $h^{*}$ </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>From here, the tooling is now capable to host a variety of different purposes - one of which is the **probabilistic view** of the statistical learning language, and we should see how that goes. Here, we also remark it briefly, that this probabilistic view is *not fundamental*, nor it has any justification to confirm itself to be ontological of the present time. This implies us to trek with caution, to not overclaim on the principality and commonality of probabilistic interpretation, for its ontological conundrum solution. </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Probability and statistics</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Statistics, as said, is a fundamental way of aggregating and so forth, of *available information*, and the *carrier of such information*. Hence, there exists particularly two types: *statistically blind information*, and *statistically total information*. For example, a statement, given knowledge under the scheme of the carrier of knowledge being English language, talks about "I am ill". The fundamental information carried is impossible and thus is blind to be handled on the statistics side. It is only a truth value, no more, no less in the form of its functionality, and it is informing us, of the *observation*, the important figure, the properties of such figure, not much else. Statistically total information would then require it to be **quantified** - that is, we have the following observation: </span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>::: {#cnj-statistics-quantification}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Statistics</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>We say that **statistics** is the fundamental analytical framework of analysis, investigation, aggregation, extraction, knowing and of obtaining reasonable type of information in regard to such object, via its container of knowledge, called *statistical information* of itself or system of interest. Existentially, we posit for this information depends on **(numerical) quantification**, i.e. numbers and quantified construct. Any information without numerical quantification is called *statistically blind information* (SBI), while the opposite being *statistically total information* (STI), and there must exist a **conversion** for SBI to STI. We say SBI is then **useful information** in the context of statistics, and not so much elevating STI, however, STI is then **actionable information**. </span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>From this view, here on out, we can conjecture or in sufficient description, permits the viewing point that *statistics* is the framework of the general study of *observations*, the set of those observations, and so on. Directly on the observations, is *statistics*. And when observations are in numerical presentation, it functions as the actionable form for us to derive any form of knowledge, hidden in those observations. In frequency analysis of observations, for example, often time whether discrete or continuous, and is available en masse of a single characteristic of a large number of individuals, often it is necessary to condense the data as far as possible, without losing much information of interest. Which, breeds to the art of *data presentation* - which is part of statistics. The term *distribution* here is also interesting. By far, this word here only means *counting, but a bit more over the top* - for example, if there exists 500 in 1000 cows you see in that particular space with red colour, you say the distribution there gives you 50% of them as red. Frequency, same thing, happening in a space, a place, and a setting. Not much probability there, is it? </span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>Insofar, we also have interesting observation, since for example, in most explanation thereof of statistics, the most mundane important part of it, is referring to "collection of procedures and principles for gaining and processing</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>information" (see in <span class="co">[</span><span class="ot">Here</span><span class="co">](https://www.statslab.cam.ac.uk/~rrw1/stats/Sa4.pdf)</span>, for a quick example on the very first page of the content). However, the other side, is most often, *probability*, i.e. for example as to make decisions when faced with 'uncertainty' - a concept only known in probability or rather being widely popularized of sort. So, where does probability fit into this place? </span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Probability</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>While statistics down the same line can be said to concern with *data analysis* - on how to make sense of the data, to extract patterns presented into data. However, this process of data analysis, provides *questions* - questions about the general idea, framework, concept, truth, 'what is going on', and so on, of the statistics. For example, in the task of, say, analyzing on 'how many cows are there in America, and what types of them are?', the usual typical observation and such gives you a plenty bunch of grounds to ask further questions, like 'why so', 'what is the relatable factor that determines this result we see that red cows are not so much?', why it is so, what is the possible explanation? What can support more, what can we extract more about the information? In doing so, you are shifting from just looking and analyzing the data to **interpreting** it. Logic can do this part, for example, when you can state of a given fact - the fact that we aggregated that we are 50 people wet in a suit, is because, by a fact that it just rained. However, when you consider yourselves in the position of something more *unverifiable, uncertain*, for example, a man with hallucination, such logical line is then cannot be trusted. Because you **do not know**, thus consider the action forward is that - how much can I trust this? Similar in gambling where the odds and the thrill of such are in the unknown, where you are hoping for something, because you are withheld of such, what you do not know, you have to forgo a bit of the fact presented of the logical system. The recovery apparatus, partially or so, and many in one, is what we called, **probability**. </span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>Probability enters statistics as the interpretation of what it means. It covers, the logical line, under the notion of *uncertainty*, and the loss of logical consistency, as said of the above. In doing so, we can basically say so as of the following logical necessity. Suppose something, called $A$ happens to be able to get two absolute values. Either $T$, or either $F$. Non-probabilistic logic dictates that such can be separated to two statements, and the world is **traceable** and determinate enough, such that it can be concluded of "$A$ is $T$", or "$A$ is $F$". However under such circumstances of what we call that the system is uncertain, traceability and **determinability** are not sufficient, leading to us unable to make sure if the fact can be reflected and concluded in a singular form, or any given form. This is where probability comes in as the interpretation to interpret this particular non-collapsible phenomena as a system under uncertainty, as a system with *probable* nature. </span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>A probable nature of a system depends on two things. First, the determination of the *probable system* and what it constitutes. Insofar, we can consider the definition of **probability**, as now the noun of this particular property of any given system, as the following:</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>::: {#thm-probabiity}</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Probability</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>**Probability**, as for the notion of the property of being *probable* of a given system. Is an interpretation of such system as for its **nature**, or properties, or structures, and of its **mechanisms** under *observation* and *resolution*, for both terms mention and collude with the existence of said system, its **states**, and the different properties of itself independent of a given **reference point**, or an **observing system**. </span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>The two main paradigms, frequentism and Bayesian probability, can be explained as the same thing, but under different reference point of the above definition philosophically speaking. Frequentist believes in their interpretation, from the focal point of the observing system, as *undisturbed* of the "parameters" and properties, structures underneath - governed by truly just the observation itself and the problem for them, as said, is the *purity* of the observation. Bayesian, on the other hand, thinks that such is mutable and dependent on the *non-convergence* of observing system. That is, frequentist believes in such implicitly defines all observing system and convergent to a same reference point, because such is irrelevant in the face of the observed system that they are inspecting. Bayesian, at that, allows for *pluralism of reference points*, such that there exists subjectivity, there exists *prior*, and there exists *posterior*. Many more interpretations of probability, like likelihoodism, or epistemic probability, works the same way of considering this particular system on *what under observations (existence) and the structural properties (system structure)* question of all, which is quite reflected in the above definition of the philosophical insight on what probability is. </span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>We do not start with any amount of mathematics, because such definition defines the *philosophy*, the *architecture* of the mathematics no less, and such will only follow, if we know and commit to a particular version of the world, the system, the notion of probability as considered, how we think of the **precursor form** that such space of all consideration works, and the properties of a given system and environment of interest for its interpretation, then comes the utilization of mathematics to denote, quantify, and abstract it away, with also the same length of concern as for the *actionability* of such terms. In fact, if we do not start with this, we forgo the **invariant conjecture of mathematical language**, that is, for a given object, no matter what language, only reflects part of what it is, under the limitation of a formal language, and under the limitation of the semantic of that language itself, and is then stuck with variations of calculus-probability, topological-probability and whatever you can say about it, different and separated. </span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="fu">#### The probability of statistical learning</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>Then, let us starts with the general lining of how, for now, the probability setting of the theory of statistical learning theory, and what is the often mainstream version of such. Kolmogorov interpretation, and so on, defines for you the second question, about the *constitutions* and *language of function* in mathematics, for the probability notion itself. We can then start, with the term probability space. A **probability space** is presented under Kolmogorov taxonomy as a triple $(\Omega,\mathcal{F},P)$, where $\Omega$[^1] is the set of outcomes, $\mathcal{F}$[^2] is the set of events, and $P$ is a *relational space* that maps $P:\Omega \times \mathcal{F}\to [0,1]$ from probabilities to events[^3]. If $\mathcal{F}$ is designed to encapsulate also $\Omega$, then $P: \mathcal{F}\to [0,1]$. The space $(\mathcal{F},[0,1])$ that the function maps to, is then denoted as $\mathbb{P}^{*}$, the assignment space<span class="ot">[^4]</span>. </span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Under such view, it is easy to say what each of them means. First, $\Omega$ is presented here purely as the **logical value that can be taken**. If, it is a logical system, then the outcome would be $\{0,1\}$. If it is height, it shall be something like a range $[a,b]$, or a finite amount of height value taken. Think is, $\Omega$ and its existence posit a truly presentable *presentation* and *enumeration* of all given outcomes that one can have, i.e. the number of reality that the system might chart. The limit, to this, is that it is entirely *subjective* - for those outcomes to be determined, you either subsume the infiniteness assumption of the universe with every outcome possible, or you return to a fixed $n$ observed outcome, and distinguish them for $m$ distinct observations of occurrence. Only then, you will have $\Omega$, and you also have no idea if the space is actually big enough. Usually, $\Omega$ would even be quantified or so under $\mathbb{R}$, in such case, again, there is nothing much about infinity, but 'we are too lazy to count'. This is the **first openness problem** of the probability space. </span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: </span>Similarly, here, $\mathcal{F}$ is the list of events. There exists two assumptions here. First, is that the event **must happen**, and its observational resultant always lands inside $\Omega$. This is a very strong assumption and it may or may not happen, can be deceived, can be corrupted, and so on. Second, is that it introduces the *second openness problem* - by looking into the determinancy of how such can happen. Simply speak, $\mathcal{F}$ is subjective - it constraints the *set of all selected events* rather than the list of all events in consideration. The path to $\Omega$ can be enumerately many more than $\mathcal{F}$, however, one can constraint itself and the environment description enough, so that $\mathcal{F}$ can be computed and considered finite. But in doing so, one then must see that there exists other $\mathcal{F}'&gt;\mathcal{F}$, and thus their system is not obviously applicable elsewhere. Furthermore, since it is such system of said nature, under noise in typical probabilistic setting, like $\mathcal{N}(0,1)$, noise can mask system function, thus the existence of $\mathcal{F}$ will always be considered a flawed proxy instead. </span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ot">[^3]: </span>Lastly, $P$ assigns value on range $<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>$ to the system. This action gives *possibility interpretation* to the system and restrict itself to that the outcome 'will never happen', and the outcome 'will happen' for a specific path of the event, in its extremal form. I think this is enough to say what restricts what, and how it constitutes the third openness problem. </span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="ot">[^4]: </span>Lastly, and we also see that the encapsulation of pairing $(\mathcal{F},<span class="co">[</span><span class="ot">0,1</span><span class="co">]</span>)$ is a real problem, and might introduce the *fourth openness problem* if tred carefully. However, this is a statistical learning theory coursebook. I would not bother you with that much details of probability. </span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>Under this system, we assume typically, that $\mathcal{F}$ is a $\sigma$-field (or called $\sigma$-algebra), as a non-empty collection of a subset of $\Omega$ that satisfy its axiom. Without $P$, $(\Omega, \mathcal{F})$ is then called a measurable space. Why the name? Essentially, it is a space, went through a *quantification system*, and it is concretized as such, and is given a good enough space that is not pathological or so. The term *measurable* here is a problem. Because of the language, which is related to measure theory, its fundamental purpose is to *gauge the size* or *volume* of any given set it is taken on. Because the notion depends on the notion of *geometry* - whether you like it or abstract it away enough, the quantification exists in a singular form, yet because you are gauging size and volume, instances of such would be required to be able to add up consistently, and this is a particular problem, because measurability means you need to take into account of the many-parts, with a measurability of something, to be taken as references, or of a given 'geometry' or shape. This, is the *measure* that we choose to give to the measurable space, and in doing this, we have the assumption that this space, before a measure is colluded, is indeed capable of handling a *measure set function*, that is, $\mu:\mathcal{F}\to \mathbb{R}$, with, for example, </span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$\mu(\Omega)=1$,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$\mu(A)\geq \mu(\varnothing)=0$ for all $A\in \mathcal{F}$,</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>if $A_{i}\in\mathcal{F}$ is a countable sequence of disjoint sets, then</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>\mu(\cup_{i}A_{i}) = \sum_{i}\mu (A_i)</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>Using this space, we can now add interpretation to the above scheme of empirical risk and so on. The criterion of the statistical learning problem is mostly $R(h,c)=R(h)$, that is such that, </span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>R(h) = \mathbb{P}<span class="co">[</span><span class="ot">h(X)\neq Y</span><span class="co">]</span> \equiv \underset{h\in \mathcal{H}}{\mathbb{P}} <span class="co">[</span><span class="ot">h(X)\sim c(X)</span><span class="co">]</span> , \quad (X,Y) \in \mathcal{S}  </span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>Under simple classification on binary value, the *outcome space*, is $\Omega=<span class="sc">\{</span>0,1<span class="sc">\}</span>$. The events, then, are those under $X$. Thus, </span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>R(h) = \underset{X\in \mathcal{X}}{\mathbb{E}} <span class="co">[</span><span class="ot">\Delta(h(X),c(X))</span><span class="co">]</span> = \mathbb{E} <span class="co">[</span><span class="ot">\mathbb{I}_{h,c}</span><span class="co">]</span> = \mathbb{E} <span class="co">[</span><span class="ot">\mathbb{I}_{h(X)\neq Y}</span><span class="co">]</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>We can decompose the probability $\mathbb{P}$ in here into $\mathbb{P}(X)\times \mathbb{P}(Y|X)$, that is, the probability of $X$ existing, but also the one probability of the concept fitting there, given what is available of $X$. We can also decompose this so much that, under the probabilistic view by then, </span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>\mathbb{P}(g(X),Y) = \mathbb{P}(X) \times \mathbb{P}(Y) \times \mathbb{P}(Y|X) \times \mathbb{P}(X,Y) \times \mathbb{P}(X|g(X)) \times \mathbb{P} (\mathcal{H}|\mathcal{S}).</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>This is the probability settlement reached, under the hypothesis that the hardness of the hypothesis configuration, the probability that the event of non-fitting happens (that is, $g(X)\neq Y$ as stated to be an event), the abstract probability that the *input* and the *model* is even making sense,, the *sensibility* of the dataset itself, and the probability of the existence and density of the dataset are correlated.</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Observations and the statistics of data</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>As stated in the previous chapter about the classical **theory of learning**, a particular way of learning can be considered as to *learn from observation*. That is, we presuppose the existence of the object set $\mathrm{Obj}[i][j]$ for $[i]$ components and $[j]$ given **exposure** - the available ports that you can extract its status and what it presents at any particular moment of inspection, or so call the act of *observing* to exist and can be captured. Such then any result given from said act is called an **observation**. Such information is the reflection of the object at will, in which we will call the collection as $\mathcal{S}$, or **dataset** which contains information about said interaction or state of the system including the object and its context of operation, and the optional 'timestamp' of the system and object's *state*. This can be given by in the precondition that you have the exposure guaranteed as said and be measurable, and you observe the object in a surrounding *environment conditioning* of such, assuming you can separate this discretely, of which we would name it as the *domain separability hypothesis*, which is often used plenty in statistical distribution or so. </span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>These observations are important, because they define, or at least give us *information*, here means any given description or inquisition of such, about the object, so that for us to *know* about the object and its surrounding interest. Then, information here is to say of the criteria to *know* - that is, the necessity to capture something. Thence, we defined information per context by three factors: </span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **knowing** of interest. </span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **scope** of the knowing. </span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **presentation** of the knowledge. </span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>Thus, such is information, and observable provides information about a system's state in a singular form, and in plural form comes 'connected information', that is, aggregated information coming out from this knowing. We can say it is the separation from **first-level knowing**, and the **second-level knowing**. For example, first-level knowing is the raw information given of its context, and its behaviours, while higher-level knowing is the informed picture if you get multiple information in together, thus creating a dynamic picture where you now can know 'how it moves', 'what it becomes', and 'what it does'. Such is the importance of information and given such, observations, and the many-collection thereof, provides us with a canvas to extract its principles and so on. If a canvas of observations can now be called as **observation space**, then if the **observation apparatus**, we can say as $\mathrm{ObA}(\cdot,\dots)[f]$ by a framework or methodological system $f$ (also can be called utilization and so on), then if $\mathrm{ObA}$ capture everything possible of all information, all components and all congruent 'being' that the object posit of its existence, then we say the observation is **complete**. This is the **apparatus completeness** of the observable theory, and if a system is with observations $w\in \mathcal{S}$, then if properties from domain $f$ can capture everything such that there exists a **mutation process** $\mathrm{Mu}(w,f,\dots)$ that mutates the system using information extracted from an **observation extractor** $\mathrm{Extr(\mathcal{S},\dots)}=\mathrm{Prop}_{f,\mathcal{S}}(\mathrm{Obj})$ that defines the components of $\mathrm{Obj}$, and the next observable after $\mathrm{Mu}$, i.e. $w'$, can be fully explained by what extracted i.e. $\mathrm{Prop}$, then we say the apparatus and the underlying analytical engine is given **domain completeness**. Given such, we can say per perspective, observable is the silver lining of any given process or system sought to either analyze it, or at least capture *what it is*. Including logic, including facts, including situations or any form of actions toward certain setting. </span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>What is the observation of its properties, then? The observation contains many properties, however, again, most of the time under specification and of concrete understanding, observation can be described loosely, and imperfectly congruently minimal as the following substrate. We note that this is not primitive nor it is fundamentally irreducible, it is merely subjective inference and totality of such, being a flawed by-this-point observations, ironically, of the notion of observations thereof. </span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Language and its actionability</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="fu">##### About language and its epistemology</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>We do have to put a cautionary tale sign on top of this, for distinction and de-complication or decoupling of sort about the importance of language. Specifically, it is called, in particular, as the problem of **groundlessness** of the language. Arguably speaking, language in itself is a form of information carriage. Under such view, the meaning of the language comes from the reality it is subjected to encode, **by and from the writer** whom wrote it down. In such sense, the origin of the language's meaning is the one using it, not the language. Without the reader, the language bears no meaning. Without the writer, the language does not exist. Actionable language, in such taxonomy, is the reader on its own, so much to execute its own command given - and thus if the writer dies, the system will still retain its control and meaning under existence. </span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>Language has many forms, and in a sense it is used to provide information, but also **action** and procedure per se, to a given engine or interpretability framework, to **actionalize** the system toward a given state or configuration. We then can separate *analytical information*, information that gives rise to description and knowledge about a system, and *actionable information*, those that functions as also **instruction** or informant to, say, the course of action or guideline thereof. Those are two fundamental discrete types of information in the respective viewline of what they contain, and how active they are. Most information given in dataset are to be said, analytical information, while the language specification of machine learning model, can be considered as actionable information - they contain the function and describe the working of the system, of the model, and else. </span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>That said, the view can be also reverted. For some, actionable information can also function and be interpreted as analytical, because of the apparatus of observation. For example, one can see the function <span class="in">`getThingsdone()`</span> and be informed of what is the shape of the model, why it is designed to be this way, or such. On the flip side, analytical information interestingly, cannot be transferred or analyzed, or in any given sense, actionalized smoothly into actionable information, because their mode of being is informative, and the transition of such requires an additional layer of interpretation and extraction to know what to do with said information. Such is the *asymmetry of information archetype*, and within such, we can see that embedding information with action is often sometimes more informative than the inverse of sort, if given plainly of 'fastest way to transform' information. That said, it is also more so of the 'ease of operationalize information', and this comes at a place we can say as the *no-free-lunch* of information archetype. Loosely speaking,</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; For any given form of analytical information, description comes at the cost of more baggage for extensions and action-forming thereby, hence theoretical infinite actionable course. Actionable information, on the other side, provides ease of transformation and thereof, while provide exponentially and theoretical infinite many interpretations, by virtue of infinite meaning 'does not bother to count'.</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>Such is the tradeoff that would be at least *symmetric* to the given archetypical separation there is. However, the operational cost is *immensely asymmetric* toward the analytical side, which is often lower and provide more straight-forward semantic. That is, when you run the system, this comes as the *Eulerian asymmetry* on operational cost, that information with execution semantic, somehow, provide adequate execution capacity, while maintaining infinite interpretation. Meanwhile, data of plain descriptions and no action, contains infinite course of action on nondeterministic (by this we mean, per instruction of what to do) ground, and contain the further indeterminacy of the system component in runtime - knowing a car has four wheels, and many things, does not render it useful to see it as a car, essentially. The line between these two archetypes are very blurry, and often we would see many to be said and to be seen as a mix of both. However, languages and so on that opt for the extreme, will present these tradeoffs. The question, then, is that whether we can find a language that is sufficient to describe the observable, given in the previous section, that can provide us with both? And can we find a language, that can construct a given being, that retains both semantic on operations, and its inherent meaning? Those are two open problems, and the prospect of the second one failing, is much higher than the first. And then, the third problem to be - can one information type full describe the others and functions as the other?</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Learning theoretic</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>The goal of learning theory, or the baseline of what to be called as **machine learning** for the object as the computational machine, and the action of learning on top of it, can be defined rather by the need and necessity that given the usage of machine learning. In general, it can be considered useful to use machine learning in the specific tangent line of a setting where: </span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>It is too complex to program, because of either observability impossibility that is, the collapse of the domain separability hypothesis, and the collapse of observation discreteness. </span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **domain completeness** is not satisfied, which is the majority of all cases. </span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inexplainable phenomena or process, for example something that fails to be secularized and generalized using the information format of *human language* to be reduced or specified to finite steps, or any given descriptions that is actionable. </span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>___</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · © Bui Gia Khanh</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://amane-fujimiya.github.io/">Website</a> · <a href="https://github.com/Amane-Fujimiya">GitHub</a> · <a href="https://amane-fujimiya.github.io/blogs">Blog</a> · RHINELAB-RINALAB · MTAIL</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Amane-Fujimiya/<repo>/edit/main/book/content/slt/slt_intro.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Amane-Fujimiya/<repo>/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/Amane-Fujimiya/<repo>/blob/main/book/content/slt/slt_intro.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

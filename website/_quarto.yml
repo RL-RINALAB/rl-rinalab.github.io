@@ -1,0 +1,79 @@
+# MTAIL site (website project). Same extension, same look as the book.
+# Folder = sidebar section: drop a .qmd into docs/, reading/ or research/
+# and it appears in the sidebar on the next render. Order pages with
+# `order: N` in their front matter; a subfolder's index.qmd titles its
+# sub-section.
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - robots.txt
+
+website:
+  title: "Modelling, Theoretical Artificial Intelligence and Learning-theoretic Group (MTAIL)"
+  site-url: https://amane-fujimiya.github.io/<repo>/      # replace <repo>
+  repo-url: https://github.com/Amane-Fujimiya/<repo>      # replace <repo>
+  repo-actions: [edit, issue, source]
+  repo-link-target: _blank
+  page-navigation: true
+  back-to-top-navigation: true
+  bread-crumbs: true
+  reader-mode: true
+  llms-txt: true                     # also emits llms.txt + .llms.md copies of every page
+
+  search:
+    location: sidebar
+    type: textbox
+    limit: 30
+    collapse-after: 3
+    show-item-context: tree
+    copy-button: true
+
+  navbar:
+    title: "MTAIL"                   # the long name stays in website.title (tab + search results)
+    pinned: true
+    collapse-below: lg
+    left:
+      - text: Central
+        href: https://amane-fujimiya.github.io/
+      - text: Information
+        href: information.qmd
+      - text: Research and Updates
+        href: research/index.qmd
+    tools:
+      - icon: github
+        href: https://github.com/Amane-Fujimiya
+
+  # ONE sidebar with no `id` and no `title` = shown on every page.
+  # (Giving it a title or id restricts it to the pages it lists.)
+  sidebar:
+    style: docked
+    collapse-level: 1
+    border: true
+    contents:
+      - index.qmd
+      - section: Documentations
+        contents: "docs/*"            # every page in docs/
+      - section: Literature and Reading
+        contents: "reading/*"
+      - section: Research
+        contents: "research/**"       # recursive: subfolders become sub-sections
+      - text: "---"
+      - references.qmd
+
+  page-footer:
+    left: "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · &copy; Bui Gia Khanh"
+    center: "RHINELAB-RINALAB · MTAIL"
+    right: Built with [Quarto](https://quarto.org/)
+
+bibliography: references.bib
+date-modified: last-modified
+
+execute:
+  freeze: auto
+
+format:
+  rhinelab-html:
+    number-sections: false
+    reference-location: margin
+    code-overflow: wrap

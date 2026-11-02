@@ -1,0 +1,1 @@
+Sitemap: https://amane-fujimiya.github.io/<repo>/sitemap.xml

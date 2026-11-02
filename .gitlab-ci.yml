@@ -1,0 +1,28 @@
+stages:
+  - build
+  - deploy
+
+image: ghcr.io/quarto-dev/quarto-full:latest
+
+build:
+  stage: build
+  script:
+    - quarto render core --output-dir ../public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+
+pages:
+  stage: deploy
+  needs:
+    - job: build
+      artifacts: true
+  script:
+    - echo "Deploying Pages"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
