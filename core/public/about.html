@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Information – RHINELABLOGIT, Webside Template W3</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-be5d01a035611e5caa05065215894e97.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0ef14ab1bd9b01543e0f27530284b958.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-be5d01a035611e5caa05065215894e97.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0d99e0e8833c00449622250dd729dda6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-43ebc96b32993ce6f4bb262b46725491.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0d99e0e8833c00449622250dd729dda6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 30,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": "tree",
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">RHINELABLOGIT, Webside Template W3</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Central</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Information</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./contents/updates/post.qmd"> 
+<span class="menu-text">Research and Updates</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Information</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://amane-fujimiya.github.io/" title="RHINELAB" class="quarto-navigation-tool px-1" aria-label="RHINELAB"><i class="bi bi-house"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RHINE-WTEMPLATE-3 - Website Template No.&nbsp;3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contents/example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Example and formatting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./contents/bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bibliography</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-general-theoretical-empirical-research" id="toc-the-general-theoretical-empirical-research" class="nav-link active" data-scroll-target="#the-general-theoretical-empirical-research"><span class="header-section-number">0.1</span> The general theoretical-empirical research</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Amane-Fujimiya/edit/main/about.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Amane-Fujimiya/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/Amane-Fujimiya/blob/main/about.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Information</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 19, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This one is taken as <strong>demonstrating example</strong> for the template. For the original, see RHINELAB@MTAIL for the specific details.</p>
+</div>
+</div>
+<p>While most of the contents of this page centred around the main works, research and observations realized in operation, it is fairly necessary to also outlines what are to be of the <strong>motivation</strong>, condition of existence, our philosophies and what to believe in. Furthermore, it is also the concentrated analysis that we would have to make, in dealing with any given scientific pursuit, any form of novelty and research, and any process of dealing with experimental-theoretical propositions, in the case we should not make it sounds like a bunch of crackpots.</p>
+<p>Nominally, RHINE-MTAIL is the <em>core splinter group</em>, under direct and incorporated control of the main laboratory, RHINELAB (or RINALAB, as the second name), focus on delivering and outlining the <em>work mode operation</em> of subsequent components, <em>governance models</em> and analysis during its operation, a large portion of <em>modelling-theoretic theory of science</em>, which simply means we treat science, largely initiated of this line of thinking from Kuhnian cycle, to be a system of model, arbitrary given <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and is capable to be changed, diluted <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, deferred <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, and so on. One of the main goal in such regard is to <strong>diagnose the structure</strong>, and to see the failure point, as if nothing is seen or recognized, nothing can even be done. That is why you would see the initial idea when MTAIL was formed, is to create the <strong>ordering level</strong> of fundamentality, from CI to CIII, respectively.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;If pushed far enough, this central view admits that even <strong>mathematics</strong> is under scrutiny as for it to be also, a model - a very good one that a lot used it for.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;When a theory is operated upon, there exists the risk, or rather the inevitability of it reaching further out, thus diluting the main framework into a proliferated view of different applications, different apparatus and contexts, and so on. Another notion that also falls into this umbrella is when <em>heuristics are too much</em> and dilute the field of its central tenet, and thus make it so to be an in-depth dilution, both in the stacks that every heuristic and empirical claims have made, and in the depth of the dependency track follows.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;When a theory fails something, or in contest, it usually <em>defers</em> the topic into unsolvable, claiming of correctness and reevaluation of such problem of its existence, projecting to correct one problem in opposition while laying out severals, or defers directly the problem as a <em>special case</em>, perhaps.</p></div></div><p>Aside from such governing role that feeds into the <em>philosophy and operational mode</em> of RHINELAB itself, the subject of MTAIL is pointed, and foundational in its core. The main subject of the lab includes several ‘doctrines’, each of which can be considered or thought of as specific analytical views, subject of studies and expansion, or analytical direction on many fields (basically means the posture and the upper-theoretical that would be applied or stationed when working on particular fields). Some of them are about <em>artificial intelligence</em>, some of them are about <em>theoretical research</em>, such as pure mathematics, theoretical physics and the contact with non-pure, applied sections. Some of them are about the thesis of a more <em>foundational stack</em>, i.e.&nbsp;mathematical modelling and the entirety of modelling theory in full, information theory and adjacent arguments.</p>
+<p>Perhaps, before we list them in details of the philosophy and what to cover thereof, we can think of the central research of MTAIL as the <em>scientific rigorous framework</em> itself - concerning of all relevant topics, of all load-bearing foundational field or systems, and the extension thereof. It is really hard to say without committing to any specific form of framework, because those contain their own bias or structural views, of which all can be considered a piece of reality or the actual substance itself. Thus, in a sense, MTAIL’s interest, even if the topic and starting point varies, all point to a singular thread - the deepest <em>possible investigation and research of the bodies of (rigorous) theoretical-empirical studies, and their connections to the realized world</em> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. And lastly, the research on which to diagnose the <strong>cost of everything</strong> - of the move from theory to practice, of practical to what is written, of where to which, of what to whom, all of which contingent and hidden under decisions and discourses of which have been implicitly formed. Such is the wish and the goal of what to be realized of the laboratory itself.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;By realized world, we note that the word <em>world</em> in particular is often <strong>overloaded with meanings</strong>. In retrospect, one can have the <strong>phase world</strong> (space), which already presupposes a specific form of encoding to express the expression thereof relevant to the properties or description desired, a proxical world where it is an idealized setting of a more complex situation, and then the <em>physical world</em> where the physical manifestation and existential condition is forced (i.e.&nbsp;instead of infinite apples, you have finite <span class="math inline">\(n\)</span> apples instead). Such would also be representative of what the laboratory would study as a topic, because while saying such, we are not satisfied by philosophical talk, but also unsatisfied of the technical jargon either.</p></div></div><section id="the-general-theoretical-empirical-research" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="the-general-theoretical-empirical-research"><span class="header-section-number">0.1</span> The general theoretical-empirical research</h3>
+<p>The posture that MTAIL wants to equip itself with, under investigation, and in build-up for RHINELAB, can be perhaps minimally expressed of the following points. Note that they function mostly, or rather deliberately like an assertions list, less than typically what to be ‘study and go’, perspectively. That said, if to summarize it in a few parts, such would be that we aim to <em>formalize and research of everything from scratch</em>, of each assumption, each choice, of all the historical records and evolution, of all logical lines of evolution and not just the end results, and even more so the entire field of its open problem and the load-bearing pillars that are scaffolding the entire modern system of studies.</p>
+<p>Why, would it be so of a decision template, or rather to pursue such interest? Why would it not be easier to stand on the shoulder of the giants and forever holding such order of authority without knowing? Would it be so satisfying as to never question the ground, be it for good or for bad, be it for change or for resolution, for the search of something or the excavation of the past, be it so, now that cowering into a corner of obsession with hedging, the culture of which we are to believe that we have known everything, saying in passing, while simultaneously believing that we do? We ought, at least of MTAIL and the wider RHINELAB, not to follow such line of argument and thought of work, be it so passing by of convenience, be comfort the enemy of real thoughts, and only genuine thoughts as unconventional and unsatisfying as it is, be the honest one. Let us build and analyze from the ground up. Build the theory, the <strong>pre-theory</strong>, the system, the way to analyze, all the way to the top, all the way to the side, to see the assumption, to the logical process, to <em>situate oneself</em> in the process of revolution or progress in what to be of concerned of science, because for once scientists are all but mortals, and the giants were once nobody. Let us see through and build everything, even with a manual, yet to understand and fully appreciate it, rather than simplify it, hedging it until where we see our ends, or neglect it away. Let us see <strong>what theory is</strong>, and to see <strong>of which empirical be</strong>, not just the word, the simple definition but the comparison and structure thereof. In a <em>sense</em>, what to ask of MTAIL, is to devise and to create the bodies of works, that focus on the art of <em>building knowledge, building science, building theories</em> and the opposition thereof, the stack of <strong>pre-theory constructs</strong> and statements that come before any theory comes to fruition or statements; and last of all, from the anthropology, to live in such process, framework and philosophy. This, includes mathematics, includes all form of sciences and theoretical studies, and the way each of the theories are formed of their load-bearing nodes.</p>
+<p>Poetic as it might sound, and philosophical as it might get, the point is simple: we are in the period of many information. We are in the time when knowledge proliferation is not exquisite virtue but real access. Where theories and knowledge has been built substantially. MTAIL simply seeks to analyze this in full. That, and the more <em>theoretical and imaginative part</em> of theoretical studies. Because man once dream, and Icarus once soared. Where he felt, he smiles because he knows he tried. Of the imagination that catches our wing, be it broken and never realized, let it be that our mind have tried, not to look above and stare at the dazzling sun without reach. MTAIL exists to study what it means to build knowledge — rigorously, historically, structurally, and from the inside — across every domain RHINELAB touches. Such is also why, don’t ask when we cover a lot of fields.</p>
+<p>After that, what to be illustrated of such? Many of those points will be repeated later, but let us try to attempt doing so right now, as the prescription downward.</p>
+<p>First, is one of the direct address of what we dub as the <em>theoretical-practical gap</em>, between theory and practices. (TBD, I will write more later)</p>
+
+
+<!-- -->
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="rhinelab-tools">
+/* RHINELAB docs tools: sidebar filter, expand/collapse/locate, remembered
+   section state, Sphinx-style page panel, keyboard nav, code language labels.
+   No dependencies; uses Bootstrap's Collapse if present. */
+(() => {
+  "use strict";
+
+  const onReady = (fn) =>
+    document.readyState === "loading"
+      ? document.addEventListener("DOMContentLoaded", () => setTimeout(fn, 0))
+      : setTimeout(fn, 0);
+
+  // one storage namespace per site (several sites can share a domain)
+  const siteRoot = (() => {
+    const off = document.querySelector('meta[name="quarto:offset"]');
+    try { return new URL(off ? off.content : "./", location.href).pathname; }
+    catch { return "/"; }
+  })();
+  const store = {
+    key: "rhinelab:sidebar:" + siteRoot,
+    read() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; } },
+    write(v) { try { localStorage.setItem(this.key, JSON.stringify(v)); } catch {} },
+  };
+
+  const el = (tag, attrs = {}, html = "") => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (html) n.innerHTML = html;
+    return n;
+  };
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const clean = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const isTyping = (t) => t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+
+  onReady(() => {
+    const sidebar = document.getElementById("quarto-sidebar");
+    const menu = sidebar && sidebar.querySelector(".sidebar-menu-container");
+    const prevLink = document.querySelector(".page-navigation .nav-page-previous a.pagination-link");
+    const nextLink = document.querySelector(".page-navigation .nav-page-next a.pagination-link");
+
+    // ── code blocks: language label ────────────────────────────────────
+    const skip = new Set(["sourceCode", "code-with-copy", "number-lines", "numberSource", "code-annotation-code", "cell-code"]);
+    document.querySelectorAll("div.sourceCode > pre.sourceCode").forEach((pre) => {
+      const lang = [...pre.classList].find((c) => !skip.has(c));
+      if (lang) pre.parentElement.setAttribute("data-lang", lang === "r" ? "R" : lang);
+    });
+
+    // ── keyboard: [ ] prev/next page, t = filter ───────────────────────
+    let filterInput = null;
+    document.addEventListener("keydown", (e) => {
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || isTyping(e.target)) return;
+      if (e.key === "[" && prevLink) { e.preventDefault(); location.href = prevLink.href; }
+      else if (e.key === "]" && nextLink) { e.preventDefault(); location.href = nextLink.href; }
+      else if (e.key === "t" && filterInput && filterInput.offsetParent !== null) {
+        e.preventDefault(); filterInput.focus(); filterInput.select();
+      }
+    });
+
+    if (!sidebar || !menu) return;
+
+    // ── section open/close helpers ─────────────────────────────────────
+    const sections = () => [...menu.querySelectorAll("ul.sidebar-section[id]")];
+    const triggersFor = (ul) => sidebar.querySelectorAll(`[data-bs-target="#${CSS.escape(ul.id)}"]`);
+    const setOpen = (ul, open) => {
+      ul.classList.toggle("show", open);
+      triggersFor(ul).forEach((a) => {
+        a.setAttribute("aria-expanded", String(open));
+        a.classList.toggle("collapsed", !open);
+      });
+    };
+    const holdsActive = (ul) => !!ul.querySelector("a.sidebar-link.active");
+    const openAncestors = (node) => {
+      let ul = node.closest("ul.sidebar-section");
+      while (ul) { setOpen(ul, true); ul = ul.parentElement.closest("ul.sidebar-section"); }
+    };
+
+    // remember what the reader opened/closed, across pages
+    let state = store.read();
+    sections().forEach((ul) => {
+      if (!(ul.id in state)) return;
+      if (state[ul.id] === false && holdsActive(ul)) return; // never hide the current page
+      setOpen(ul, state[ul.id]);
+    });
+    let filtering = false;
+    const remember = (e) => {
+      const ul = e.target;
+      if (filtering || !ul.classList || !ul.classList.contains("sidebar-section") || !ul.id) return;
+      state[ul.id] = e.type === "shown.bs.collapse";
+      store.write(state);
+    };
+    sidebar.addEventListener("shown.bs.collapse", remember);
+    sidebar.addEventListener("hidden.bs.collapse", remember);
+
+    // ── toolbar: filter + expand/collapse/locate ───────────────────────
+    const bar = el("div", { class: "mt-sb-toolbar", role: "toolbar", "aria-label": "Navigation tools" });
+    bar.innerHTML =
+      '<label class="mt-sb-filter"><i class="bi bi-funnel" aria-hidden="true"></i>' +
+      '<input type="search" placeholder="Filter pages" aria-label="Filter navigation" autocomplete="off" spellcheck="false">' +
+      "<kbd>t</kbd></label>" +
+      '<button type="button" class="mt-sb-btn" data-act="expand" title="Expand all"><i class="bi bi-arrows-expand"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="collapse" title="Collapse all"><i class="bi bi-arrows-collapse"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="locate" title="Reveal current page"><i class="bi bi-crosshair"></i></button>';
+    menu.parentNode.insertBefore(bar, menu);
+    filterInput = bar.querySelector("input");
+    const empty = el("div", { class: "mt-sb-empty", hidden: "" }, "no matching pages");
+    menu.appendChild(empty);
+
+    // scroll only the sidebar (scrollIntoView would also move the page)
+    const centerIn = (a, smooth) => {
+      const r = a.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      sidebar.scrollTo({ top: sidebar.scrollTop + (r.top - s.top) - s.height / 2 + r.height / 2,
+                         behavior: smooth ? "smooth" : "auto" });
+    };
+    const locate = () => {
+      const a = menu.querySelector("a.sidebar-link.active");
+      if (!a) return;
+      openAncestors(a);
+      centerIn(a, true);
+      a.focus({ preventScroll: true });
+    };
+
+    bar.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-act]");
+      if (!btn) return;
+      const act = btn.dataset.act;
+      if (act === "locate") return locate();
+      const open = act === "expand";
+      sections().forEach((ul) => { setOpen(ul, open); state[ul.id] = open; });
+      if (!open) { const a = menu.querySelector("a.sidebar-link.active"); if (a) openAncestors(a); }
+      store.write(state);
+    });
+
+    // filter
+    const items = [...menu.querySelectorAll("li.sidebar-item")];
+    const labelOf = (li) => {
+      const a = li.querySelector(":scope > .sidebar-item-container > a.sidebar-item-text");
+      return clean(a ? a.textContent : "").toLowerCase();
+    };
+    const labels = new Map(items.map((li) => [li, labelOf(li)]));
+    let snapshot = null;
+
+    const runFilter = (raw) => {
+      const terms = clean(raw).toLowerCase().split(" ").filter(Boolean);
+      if (!terms.length) {
+        filtering = false;
+        items.forEach((li) => li.classList.remove("mt-hide", "mt-match"));
+        if (snapshot) { snapshot.forEach(([ul, open]) => setOpen(ul, open)); snapshot = null; }
+        empty.hidden = true;
+        return;
+      }
+      if (!snapshot) snapshot = sections().map((ul) => [ul, ul.classList.contains("show")]);
+      filtering = true;
+      items.forEach((li) => { li.classList.add("mt-hide"); li.classList.remove("mt-match"); });
+      let hits = 0;
+      items.forEach((li) => {
+        const label = labels.get(li);
+        if (!terms.every((t) => label.includes(t))) return;
+        hits++;
+        li.classList.remove("mt-hide");
+        li.classList.add("mt-match");
+        const own = li.querySelector(":scope > ul.sidebar-section");
+        if (own) { setOpen(own, true); own.querySelectorAll("li.sidebar-item").forEach((d) => d.classList.remove("mt-hide")); }
+        let p = li.parentElement.closest("li.sidebar-item");
+        while (p) {
+          p.classList.remove("mt-hide");
+          const ul = p.querySelector(":scope > ul.sidebar-section");
+          if (ul) setOpen(ul, true);
+          p = p.parentElement.closest("li.sidebar-item");
+        }
+      });
+      empty.hidden = hits > 0;
+    };
+
+    filterInput.addEventListener("input", () => runFilter(filterInput.value));
+    filterInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { filterInput.value = ""; runFilter(""); filterInput.blur(); }
+      else if (e.key === "Enter") {
+        const first = menu.querySelector("li.mt-match > .sidebar-item-container > a.sidebar-link[href]");
+        if (first) location.href = first.href;
+      } else if (e.key === "ArrowDown") {
+        const first = menu.querySelector("li.sidebar-item:not(.mt-hide) a.sidebar-link[href]");
+        if (first) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // ↑/↓ moves between visible links inside the tree
+    menu.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const links = [...menu.querySelectorAll("a.sidebar-link[href]")].filter((a) => a.offsetParent !== null);
+      const i = links.indexOf(document.activeElement);
+      if (i < 0) return;
+      e.preventDefault();
+      const j = e.key === "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1;
+      if (j < 0) filterInput.focus(); else links[j].focus();
+    });
+
+    // ── page panel (Sphinx: previous / next topic, this page, meta) ────
+    const panel = el("div", { class: "mt-sb-panel" });
+    const topic = (a, dir, label) =>
+      `<section class="mt-sb-block"><h6>${label}</h6><a class="mt-topic" href="${a.getAttribute("href")}">` +
+      `<span class="mt-dir">${dir}</span><span>${esc(clean(a.textContent))}</span></a></section>`;
+    let html = "";
+    if (prevLink) html += topic(prevLink, "[", "Previous topic");
+    if (nextLink) html += topic(nextLink, "]", "Next topic");
+
+    const actionsBox = document.querySelector("#quarto-margin-sidebar .toc-actions") ||
+                       document.querySelector("nav[role='doc-toc'] .toc-actions");
+    const actions = actionsBox ? [...actionsBox.querySelectorAll("a")] : [];
+    const icon = (t) => /edit/i.test(t) ? "pencil-square" : /issue|bug/i.test(t) ? "bug" : /source/i.test(t) ? "file-earmark-code" : "box-arrow-up-right";
+    html += '<section class="mt-sb-block"><h6>This page</h6><ul>';
+    actions.forEach((a) => {
+      const t = clean(a.textContent);
+      html += `<li><a href="${a.getAttribute("href")}"${a.target ? ` target="${a.target}"` : ""}><i class="bi bi-${icon(t)}"></i>${esc(t)}</a></li>`;
+    });
+    html += '<li><button type="button" class="mt-linklike" data-act="copy-link"><i class="bi bi-link-45deg"></i><span>Copy link</span></button></li>';
+    html += "</ul></section>";
+
+    const main = document.querySelector("main.content");
+    if (main) {
+      const body = main.cloneNode(true);
+      body.querySelectorAll("pre, code, script, style, .MathJax, mjx-container, .quarto-title-block, nav, .footnotes").forEach((n) => n.remove());
+      const words = (body.textContent.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length;
+      const mod = document.querySelector(".quarto-title-meta .date-modified, p.date-modified");
+      const secs = main.querySelectorAll("section.level2").length;
+      html += '<section class="mt-sb-block mt-sb-meta"><h6>Page</h6><dl>';
+      if (mod) html += `<dt>Modified</dt><dd>${esc(clean(mod.textContent))}</dd>`;
+      html += `<dt>Length</dt><dd>${words.toLocaleString()} words · ~${Math.max(1, Math.round(words / 220))} min</dd>`;
+      if (secs) html += `<dt>Sections</dt><dd>${secs}</dd>`;
+      html += "</dl></section>";
+    }
+    html += '<div class="mt-sb-keys"><kbd>t</kbd> filter · <kbd>[</kbd> <kbd>]</kbd> prev/next · <kbd>s</kbd> search</div>';
+    panel.innerHTML = html;
+    menu.after(panel);
+
+    panel.addEventListener("click", async (e) => {
+      const btn = e.target.closest('[data-act="copy-link"]');
+      if (!btn) return;
+      const span = btn.querySelector("span");
+      try { await navigator.clipboard.writeText(location.href.split("#")[0]); span.textContent = "Copied"; }
+      catch { span.textContent = "Copy failed"; }
+      setTimeout(() => (span.textContent = "Copy link"), 1400);
+    });
+
+    // keep the current page in view on load (without animation)
+    const active = menu.querySelector("a.sidebar-link.active");
+    if (active) {
+      const r = active.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      if (r.top < s.top || r.bottom > s.bottom) centerIn(active, false);
+    }
+  });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/amane-fujimiya\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Information"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>This one is taken as **demonstrating example** for the template. For the original, see RHINELAB@MTAIL for the specific details. </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>While most of the contents of this page centred around the main works, research and observations realized in operation, it is fairly necessary to also outlines what are to be of the **motivation**, condition of existence, our philosophies and what to believe in. Furthermore, it is also the concentrated analysis that we would have to make, in dealing with any given scientific pursuit, any form of novelty and research, and any process of dealing with experimental-theoretical propositions, in the case we should not make it sounds like a bunch of crackpots. </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Nominally, RHINE-MTAIL is the *core splinter group*, under direct and incorporated control of the main laboratory, RHINELAB (or RINALAB, as the second name), focus on delivering and outlining the *work mode operation* of subsequent components, *governance models* and analysis during its operation, a large portion of *modelling-theoretic theory of science*, which simply means we treat science, largely initiated of this line of thinking from Kuhnian cycle, to be a system of model, arbitrary given [^1], and is capable to be changed, diluted [^2], deferred [^3], and so on. One of the main goal in such regard is to **diagnose the structure**, and to see the failure point, as if nothing is seen or recognized, nothing can even be done. That is why you would see the initial idea when MTAIL was formed, is to create the **ordering level** of fundamentality, from CI to CIII, respectively. </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>If pushed far enough, this central view admits that even **mathematics** is under scrutiny as for it to be also, a model - a very good one that a lot used it for. </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: </span>When a theory is operated upon, there exists the risk, or rather the inevitability of it reaching further out, thus diluting the main framework into a proliferated view of different applications, different apparatus and contexts, and so on. Another notion that also falls into this umbrella is when *heuristics are too much* and dilute the field of its central tenet, and thus make it so to be an in-depth dilution, both in the stacks that every heuristic and empirical claims have made, and in the depth of the dependency track follows. </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ot">[^3]: </span>When a theory fails something, or in contest, it usually *defers* the topic into unsolvable, claiming of correctness and reevaluation of such problem of its existence, projecting to correct one problem in opposition while laying out severals, or defers directly the problem as a *special case*, perhaps. </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Aside from such governing role that feeds into the *philosophy and operational mode* of RHINELAB itself, the subject of MTAIL is pointed, and foundational in its core. The main subject of the lab includes several 'doctrines', each of which can be considered or thought of as specific analytical views, subject of studies and expansion, or analytical direction on many fields (basically means the posture and the upper-theoretical that would be applied or stationed when working on particular fields). Some of them are about *artificial intelligence*, some of them are about *theoretical research*, such as pure mathematics, theoretical physics and the contact with non-pure, applied sections. Some of them are about the thesis of a more *foundational stack*, i.e. mathematical modelling and the entirety of modelling theory in full, information theory and adjacent arguments. </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Perhaps, before we list them in details of the philosophy and what to cover thereof, we can think of the central research of MTAIL as the *scientific rigorous framework* itself - concerning of all relevant topics, of all load-bearing foundational field or systems, and the extension thereof. It is really hard to say without committing to any specific form of framework, because those contain their own bias or structural views, of which all can be considered a piece of reality or the actual substance itself. Thus, in a sense, MTAIL's interest, even if the topic and starting point varies, all point to a singular thread - the deepest *possible investigation and research of the bodies of (rigorous) theoretical-empirical studies, and their connections to the realized world* [^4]. And lastly, the research on which to diagnose the **cost of everything** - of the move from theory to practice, of practical to what is written, of where to which, of what to whom, all of which contingent and hidden under decisions and discourses of which have been implicitly formed. Such is the wish and the goal of what to be realized of the laboratory itself. </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ot">[^4]: </span>By realized world, we note that the word *world* in particular is often **overloaded with meanings**. In retrospect, one can have the **phase world** (space), which already presupposes a specific form of encoding to express the expression thereof relevant to the properties or description desired, a proxical world where it is an idealized setting of a more complex situation, and then the *physical world* where the physical manifestation and existential condition is forced (i.e. instead of infinite apples, you have finite $n$ apples instead). Such would also be representative of what the laboratory would study as a topic, because while saying such, we are not satisfied by philosophical talk, but also unsatisfied of the technical jargon either. </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### The general theoretical-empirical research</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>The posture that MTAIL wants to equip itself with, under investigation, and in build-up for RHINELAB, can be perhaps minimally expressed of the following points. Note that they function mostly, or rather deliberately like an assertions list, less than typically what to be 'study and go', perspectively. That said, if to summarize it in a few parts, such would be that we aim to *formalize and research of everything from scratch*, of each assumption, each choice, of all the historical records and evolution, of all logical lines of evolution and not just the end results, and even more so the entire field of its open problem and the load-bearing pillars that are scaffolding the entire modern system of studies. </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Why, would it be so of a decision template, or rather to pursue such interest? Why would it not be easier to stand on the shoulder of the giants and forever holding such order of authority without knowing? Would it be so satisfying as to never question the ground, be it for good or for bad, be it for change or for resolution, for the search of something or the excavation of the past, be it so, now that cowering into a corner of obsession with hedging, the culture of which we are to believe that we have known everything, saying in passing, while simultaneously believing that we do? We ought, at least of MTAIL and the wider RHINELAB, not to follow such line of argument and thought of work, be it so passing by of convenience, be comfort the enemy of real thoughts, and only genuine thoughts as unconventional and unsatisfying as it is, be the honest one. Let us build and analyze from the ground up. Build the theory, the **pre-theory**, the system, the way to analyze, all the way to the top, all the way to the side, to see the assumption, to the logical process, to *situate oneself* in the process of revolution or progress in what to be of concerned of science, because for once scientists are all but mortals, and the giants were once nobody. Let us see through and build everything, even with a manual, yet to understand and fully appreciate it, rather than simplify it, hedging it until where we see our ends, or neglect it away. Let us see **what theory is**, and to see **of which empirical be**, not just the word, the simple definition but the comparison and structure thereof. In a *sense*, what to ask of MTAIL, is to devise and to create the bodies of works, that focus on the art of *building knowledge, building science, building theories* and the opposition thereof, the stack of **pre-theory constructs** and statements that come before any theory comes to fruition or statements; and last of all, from the anthropology, to live in such process, framework and philosophy. This, includes mathematics, includes all form of sciences and theoretical studies, and the way each of the theories are formed of their load-bearing nodes. </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Poetic as it might sound, and philosophical as it might get, the point is simple: we are in the period of many information. We are in the time when knowledge proliferation is not exquisite virtue but real access. Where theories and knowledge has been built substantially. MTAIL simply seeks to analyze this in full. That, and the more *theoretical and imaginative part* of theoretical studies. Because man once dream, and Icarus once soared. Where he felt, he smiles because he knows he tried. Of the imagination that catches our wing, be it broken and never realized, let it be that our mind have tried, not to look above and stare at the dazzling sun without reach.  MTAIL exists to study what it means to build knowledge — rigorously, historically, structurally, and from the inside — across every domain RHINELAB touches. Such is also why, don't ask when we cover a lot of fields.  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>After that, what to be illustrated of such? Many of those points will be repeated later, but let us try to attempt doing so right now, as the prescription downward. </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>First, is one of the direct address of what we dub as the *theoretical-practical gap*, between theory and practices. (TBD, I will write more later)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>All content licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · © Bui Gia Khanh.</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://amane-fujimiya.github.io/">Website</a> · <a href="https://github.com/Amane-Fujimiya">GitHub</a> · <a href="https://amane-fujimiya.github.io/blogs">Blog</a> · RHINELAB-RINALAB - MTAIL</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Amane-Fujimiya/edit/main/about.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Amane-Fujimiya/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/Amane-Fujimiya/blob/main/about.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

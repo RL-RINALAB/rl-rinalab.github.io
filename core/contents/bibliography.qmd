@@ -1,0 +1,6 @@
+---
+title: "Bibliography"
+---
+Currently not working, but if you throw some shades into it, it will work. 
+::: {#refs}
+:::

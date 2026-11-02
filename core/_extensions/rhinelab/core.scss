@@ -1,0 +1,940 @@
+/*-- scss:defaults --*/
+// ═══════════════════════════════════════════════════════════════════════
+//  RHINELAB docs theme: core (shared by light and dark)
+//  Layering:  theme.light = [default, core.scss, light.scss]
+//             theme.dark  = [default, core.scss, dark.scss]
+//  Quarto puts the LAST file's defaults first, so the palette files win and
+//  every rule below compiles twice: once per palette.
+// ═══════════════════════════════════════════════════════════════════════
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap");
+
+// ── fallbacks (only used if a palette forgets a token) ─────────────────
+$mt-bg: #ffffff !default;            $mt-surface: #f4f5f7 !default;
+$mt-surface-2: #e9ecf0 !default;     $mt-fg: #1f2328 !default;
+$mt-fg-strong: #0b0f14 !default;     $mt-muted: #56606b !default;
+$mt-faint: #8a939d !default;         $mt-rule: #d9dde2 !default;
+$mt-rule-strong: #b3bbc4 !default;   $mt-link: #0b5cad !default;
+$mt-accent: #c2510a !default;        $mt-teal: #1b7c8f !default;
+$mt-nav-bg: #2e4a68 !default;        $mt-nav-fg: #dfe7f0 !default;
+$mt-nav-hl: #ffffff !default;        $mt-code-fg: #3f4f9f !default;
+$mt-code-bg: #eef1f4 !default;       $mt-block-bg: #f6f8fa !default;
+$mt-ok: #1a7f37 !default;            $mt-warn: #9a6700 !default;
+$mt-err: #c42b1c !default;           $mt-info: #0b5cad !default;
+$mt-sel: rgba(27, 124, 143, .18) !default;
+
+// ── type ───────────────────────────────────────────────────────────────
+$mt-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$mt-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+$font-family-sans-serif: $mt-sans !default;
+$font-family-monospace: $mt-mono !default;
+$font-size-root: 14px !default;           // dense, Sphinx-like
+$line-height-base: 1.55 !default;
+$headings-font-weight: 600 !default;
+$headings-line-height: 1.25 !default;
+$headings-color: $mt-fg-strong !default;
+$h1-font-size: 1.6rem !default;
+$h2-font-size: 1.3rem !default;
+$h3-font-size: 1.1rem !default;
+$h4-font-size: 1rem !default;
+$h5-font-size: .9rem !default;
+$h6-font-size: .85rem !default;
+$small-font-size: .857em !default;
+
+// ── colour plumbing into Bootstrap / Quarto ─────────────────────────────
+$body-bg: $mt-bg !default;
+$body-color: $mt-fg !default;
+$body-secondary-color: $mt-muted !default;
+$link-color: $mt-link !default;
+$link-hover-color: $mt-link !default;
+$primary: $mt-link !default;
+$secondary: $mt-muted !default;
+$border-color: $mt-rule !default;
+$hr-color: $mt-rule !default;
+$hr-opacity: 1 !default;
+$popover-bg: $mt-surface !default;
+$popover-border-color: $mt-rule-strong !default;
+$input-bg: $mt-bg !default;
+$input-border-color: $mt-rule !default;
+$dropdown-bg: $mt-surface !default;
+$dropdown-border-color: $mt-rule-strong !default;
+$dropdown-link-color: $mt-fg !default;
+$dropdown-link-hover-bg: $mt-surface-2 !default;
+$dropdown-link-hover-color: $mt-fg-strong !default;
+
+$border-radius: 2px !default;
+$border-radius-sm: 1px !default;
+$border-radius-lg: 3px !default;
+$enable-shadows: false !default;
+
+// navigation
+$navbar-bg: $mt-nav-bg !default;
+$navbar-fg: $mt-nav-fg !default;
+$navbar-hl: $mt-nav-hl !default;
+$sidebar-bg: $mt-surface !default;
+$sidebar-fg: $mt-fg !default;
+$sidebar-hl: $mt-fg-strong !default;
+$footer-bg: $mt-surface !default;
+$sidebar-font-size: .875rem !default;          // same size at every depth
+$sidebar-font-size-section: .875rem !default;
+$footer-fg: $mt-muted !default;
+
+// toc
+$toc-color: $mt-fg-strong !default;
+$toc-font-size: .8rem !default;
+$toc-active-border: $mt-accent !default;
+$toc-inactive-border: $mt-rule !default;
+
+// code
+$code-color: $mt-code-fg !default;
+$code-bg: $mt-code-bg !default;
+$code-block-bg: $mt-block-bg !default;
+$code-block-border-left: false !default;   // drawn in rules instead
+$code-block-bg-padding: .55rem .75rem !default;
+$btn-code-copy-color: $mt-faint !default;
+$btn-code-copy-color-active: $mt-accent !default;
+
+// tables
+$table-cell-padding-y: .28rem !default;
+$table-cell-padding-x: .55rem !default;
+$table-border-color: $mt-rule !default;
+$table-color: $mt-fg !default;
+
+// callouts
+$callout-border-width: 3px !default;
+$callout-margin-top: 1rem !default;
+$callout-margin-bottom: 1rem !default;
+$callout-color-note: $mt-info !default;
+$callout-color-tip: $mt-ok !default;
+$callout-color-caution: $mt-accent !default;
+$callout-color-warning: $mt-warn !default;
+$callout-color-important: $mt-err !default;
+
+// mermaid follows the palette (do NOT set mermaid.theme in YAML)
+$mermaid-bg-color: $mt-bg !default;
+$mermaid-edge-color: $mt-muted !default;
+$mermaid-fg-color: $mt-fg !default;
+$mermaid-node-bg-color: $mt-surface !default;
+$mermaid-node-fg-color: $mt-fg !default;
+$mermaid-label-bg-color: $mt-bg !default;
+$mermaid-label-fg-color: $mt-fg !default;
+$mermaid-font-family: $mt-sans !default;
+
+$content-padding-top: 0 !default;
+
+
+/*-- scss:rules --*/
+// ═══════════════════════════════════════════════════════════════════════
+//  0. Tokens as CSS custom properties (used by tools.html and by authors)
+// ═══════════════════════════════════════════════════════════════════════
+:root {
+  --mt-bg: #{$mt-bg};               --mt-surface: #{$mt-surface};
+  --mt-surface-2: #{$mt-surface-2}; --mt-fg: #{$mt-fg};
+  --mt-fg-strong: #{$mt-fg-strong}; --mt-muted: #{$mt-muted};
+  --mt-faint: #{$mt-faint};         --mt-rule: #{$mt-rule};
+  --mt-rule-strong: #{$mt-rule-strong};
+  --mt-link: #{$mt-link};           --mt-accent: #{$mt-accent};
+  --mt-teal: #{$mt-teal};
+  --mt-ok: #{$mt-ok};   --mt-warn: #{$mt-warn};
+  --mt-err: #{$mt-err}; --mt-info: #{$mt-info};
+  --mt-mono: #{$mt-mono};
+  // backwards-compatible names from the old custom.scss
+  --accent-orange: #{$mt-accent};
+  --accent-teal: #{$mt-teal};
+  --teal-italic: #{$mt-teal};
+}
+
+::selection { background: $mt-sel; }
+
+kbd, .kbd {
+  font-family: $mt-mono;
+  font-size: .78em;
+  line-height: 1.2;
+  padding: .02em .35em;
+  border-radius: 2px !important;
+  border: 1px solid $mt-rule-strong !important;
+  border-bottom-width: 2px !important;
+  background: $mt-surface !important;
+  color: $mt-fg !important;
+  box-shadow: none;
+}
+
+body {
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// thin, quiet scrollbars where things scroll
+.sidebar, pre, .table-responsive, .cell-output-display {
+  scrollbar-width: thin;
+  scrollbar-color: $mt-rule-strong transparent;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  1. Navbar (website projects)
+// ═══════════════════════════════════════════════════════════════════════
+.navbar {
+  padding-top: .15rem;
+  padding-bottom: .15rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+  .navbar-title { font-size: 1rem; font-weight: 600; letter-spacing: .005em; }
+  .nav-link { font-size: .86rem; padding: .35rem .65rem !important; }
+  .nav-link.active { box-shadow: inset 0 -2px 0 $mt-accent; }
+  .quarto-navigation-tool { font-size: .95rem; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  2. Sidebar: dense tree, part captions, guide lines, active bar
+// ═══════════════════════════════════════════════════════════════════════
+#quarto-sidebar.sidebar-navigation {
+  font-size: .84rem;
+
+  &.docked { border-right: 1px solid $mt-rule; }
+  > * { padding-top: .5em; }
+
+  .sidebar-header { padding-top: .25rem !important; margin-top: .25rem !important; }
+  .sidebar-title {
+    font-size: .98rem;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: .005em;
+    padding-bottom: .35rem;
+    a { color: $mt-fg-strong; font-weight: 600; }
+  }
+  .sidebar-tools-main .quarto-navigation-tool { opacity: .65; }
+  .sidebar-tools-main .quarto-navigation-tool:hover { opacity: 1; color: $mt-accent; }
+
+  // spacing: tight rows instead of Quarto's airy defaults
+  .sidebar-item { margin: 0; line-height: 1.3; }
+  .sidebar-section { padding-left: 0; padding-bottom: .15rem; }
+
+  .sidebar-item-container {
+    align-items: stretch;
+    border-radius: 2px;
+    > a.sidebar-item-text {
+      display: block;
+      padding: .2rem .5rem;
+      color: $mt-fg;
+      border-radius: 2px;
+    }
+    &:hover { background: $mt-surface-2; }
+    &:hover > a.sidebar-item-text { color: $mt-fg-strong; }
+  }
+  .sidebar-item-toggle {
+    display: flex;
+    align-items: center;
+    padding: 0 .4rem;
+    color: $mt-faint;
+    .bi { margin-left: 0 !important; font-size: .65rem; }
+    &:hover { color: $mt-accent; }
+  }
+
+  // nested levels: vertical guide line, like a file tree
+  ul.sidebar-section {
+    margin-left: .65rem;
+    padding-left: .35rem;
+    border-left: 1px solid $mt-rule;
+  }
+
+  // the current page
+  a.sidebar-link.active,
+  .sidebar-item-container .active {
+    color: $mt-fg-strong !important;
+    font-weight: 600;
+    background: rgba($mt-accent, .09);
+    box-shadow: inset 2px 0 0 $mt-accent;
+  }
+  // a section that contains the current page
+  li.sidebar-item-section:has(a.sidebar-link.active) > .sidebar-item-container > a.sidebar-item-text {
+    color: $mt-fg-strong;
+  }
+
+  // chapter numbers: monospace column with a hanging indent for long titles
+  .menu-text:has(> .chapter-number) { display: flex; align-items: baseline; }
+  .chapter-number {
+    flex: none;
+    font-family: $mt-mono;
+    font-size: .78em;
+    color: $mt-faint;
+    display: inline-block;
+    min-width: 1.6em;
+  }
+  .active .chapter-number { color: $mt-accent; }
+
+  // top-level parts become captions (Sphinx/Furo "caption-text")
+  .sidebar-menu-container > ul > li.sidebar-item-section {
+    margin-top: .7rem;
+    > .sidebar-item-container {
+      &:hover { background: transparent; }
+      > a.sidebar-item-text {
+        font-family: $mt-mono;
+        font-size: .7rem;
+        font-weight: 600;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: $mt-muted;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+      }
+      > a.sidebar-item-text:hover { color: $mt-accent; }
+    }
+    > ul.sidebar-section { margin-left: .15rem; border-left-color: transparent; padding-left: 0; }
+  }
+  .sidebar-menu-container > ul > li.sidebar-item:not(.sidebar-item-section) + li.sidebar-item-section {
+    border-top: 1px solid $mt-rule;
+    padding-top: .45rem;
+  }
+
+  .sidebar-divider { border-color: $mt-rule; opacity: 1; margin: .5rem 0; }
+}
+
+// sidebar search box (textbox style)
+.sidebar-search, #quarto-search {
+  .aa-Autocomplete .aa-Form,
+  .aa-Form {
+    border-radius: 2px !important;
+    border: 1px solid $mt-rule-strong !important;
+    background: $mt-bg !important;
+    min-height: 1.9rem;
+  }
+  .aa-Form:focus-within { border-color: $mt-accent !important; box-shadow: none !important; }
+  .aa-Input { font-size: .82rem !important; color: $mt-fg !important; }
+}
+.aa-DetachedFormContainer .aa-Form { background: $mt-bg !important; border-color: $mt-rule-strong !important; }
+.aa-Panel, .aa-DetachedContainer { background: $mt-bg !important; border: 1px solid $mt-rule-strong; border-radius: 2px !important; }
+
+// ── injected by tools.html: filter, actions, page panel ───────────────
+.mt-sb-toolbar {
+  display: flex;
+  gap: .3rem;
+  align-items: stretch;
+  margin: .45rem 0 .35rem;
+}
+.mt-sb-filter {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid $mt-rule-strong;
+  border-radius: 2px;
+  background: $mt-bg;
+  &:focus-within { border-color: $mt-accent; }
+  > .bi { color: $mt-faint; font-size: .72rem; padding: 0 .3rem 0 .45rem; }
+  input {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $mt-fg;
+    font-size: .8rem;
+    padding: .22rem .2rem;
+    &::placeholder { color: $mt-faint; }
+    &::-webkit-search-cancel-button { display: none; }
+  }
+  kbd { margin-right: .3rem; flex: none; }
+}
+.mt-sb-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  border: 1px solid $mt-rule-strong;
+  border-radius: 2px;
+  background: $mt-bg;
+  color: $mt-muted;
+  font-size: .78rem;
+  padding: 0;
+  cursor: pointer;
+  &:hover, &:focus-visible { color: $mt-accent; border-color: $mt-accent; outline: 0; }
+}
+.mt-sb-empty {
+  font-family: $mt-mono;
+  font-size: .72rem;
+  color: $mt-faint;
+  padding: .35rem .5rem;
+}
+#quarto-sidebar li.sidebar-item.mt-hide { display: none !important; }
+#quarto-sidebar li.sidebar-item.mt-match > .sidebar-item-container > a.sidebar-item-text {
+  color: $mt-fg-strong;
+  background: rgba($mt-teal, .12);
+}
+
+.mt-sb-panel {
+  margin-top: 1rem;
+  border-top: 1px solid $mt-rule;
+  padding-top: .35rem !important;
+  padding-bottom: 1rem;
+  font-size: .8rem;
+}
+.mt-sb-block {
+  padding: .45rem .5rem .1rem;
+  h6 {
+    font-family: $mt-mono;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: $mt-muted;
+    margin: 0 0 .2rem;
+  }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin: .05rem 0; }
+  a, button.mt-linklike {
+    color: $mt-fg;
+    text-decoration: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    &:hover { color: $mt-accent; }
+  }
+  .bi { color: $mt-faint; margin-right: .35rem; font-size: .75rem; }
+  .mt-topic { display: flex; gap: .35rem; align-items: baseline; line-height: 1.3; }
+  .mt-topic .mt-dir { font-family: $mt-mono; color: $mt-faint; font-size: .72rem; }
+}
+.mt-sb-meta {
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: .05rem .6rem; margin: 0; }
+  dt { font-weight: 400; color: $mt-muted; }
+  dd { margin: 0; font-family: $mt-mono; font-size: .74rem; color: $mt-fg; align-self: center; }
+}
+.mt-sb-keys {
+  padding: .5rem .5rem 0;
+  font-size: .7rem;
+  color: $mt-faint;
+  line-height: 1.9;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  3. Right margin: "On this page"
+// ═══════════════════════════════════════════════════════════════════════
+#quarto-margin-sidebar {
+  .sidebar nav[role="doc-toc"], nav[role="doc-toc"] { padding-left: .25rem; }
+  #toc-title {
+    font-family: $mt-mono;
+    font-size: .66rem !important;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: $mt-muted;
+    margin-bottom: .35rem;
+  }
+  nav[role="doc-toc"] > ul { margin-left: 0; }
+  nav[role="doc-toc"] ul li a {
+    padding-top: .12rem !important;
+    padding-bottom: .12rem !important;
+    line-height: 1.3 !important;
+    color: $mt-muted;
+    &:hover { color: $mt-fg-strong !important; }
+  }
+  nav[role="doc-toc"] ul li a.active {
+    color: $mt-fg-strong !important;
+    border-left: 2px solid $mt-accent !important;
+    font-weight: 500;
+  }
+  .header-section-number { font-family: $mt-mono; font-size: .9em; color: $mt-faint; margin-right: .25em; }
+  .toc-actions {
+    margin-top: .9rem;
+    padding-top: .5rem;
+    border-top: 1px solid $mt-rule;
+    font-size: .76rem;
+    a { color: $mt-muted; }
+    a:hover { color: $mt-accent; }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  4. Title block → spec sheet
+// ═══════════════════════════════════════════════════════════════════════
+.quarto-title-block {
+  .quarto-title .title {
+    font-size: 1.85rem;
+    font-weight: 600;
+    letter-spacing: -.012em;
+    margin-bottom: .6rem;
+  }
+  .quarto-title .subtitle { font-size: 1.05rem; color: $mt-muted; font-weight: 400; }
+  .quarto-title-meta-heading {
+    font-family: $mt-mono;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .09em;
+    color: $mt-muted;
+    opacity: 1 !important;
+  }
+
+  .quarto-title-meta-author,
+  .quarto-title-meta:not(:empty):has(.quarto-title-meta-heading) {
+    border: 1px solid $mt-rule;
+    border-radius: 2px;
+    column-gap: 0 !important;
+    row-gap: 0 !important;
+    margin: .5rem 0 0;
+    font-size: .86rem;
+    > .quarto-title-meta-heading {
+      margin: 0 !important;
+      padding: .3rem .65rem;
+      background: $mt-surface;
+      border-bottom: 1px solid $mt-rule;
+    }
+    > .quarto-title-meta-contents {
+      padding: .12rem .65rem;
+      border-bottom: 1px solid rgba($mt-rule, .6);
+      p { margin: 0; }
+    }
+  }
+  .quarto-title-meta:has(.quarto-title-meta-heading) {
+    > div { padding: .3rem .65rem; border-right: 1px solid $mt-rule; }
+    > div:last-child { border-right: 0; }
+    .quarto-title-meta-heading { margin: 0 0 .1rem !important; padding: 0 !important; background: none !important; border: 0 !important; }
+    .quarto-title-meta-contents { padding: 0 !important; border: 0 !important; }
+  }
+  .quarto-title-meta-author + .quarto-title-meta:has(.quarto-title-meta-heading) { margin-top: -1px; }
+  .quarto-title-meta-author .affiliation { color: $mt-muted; }
+  .abstract { margin-top: 1rem; font-size: .92rem; border-left: 3px solid $mt-rule-strong; padding-left: .8rem; }
+  .abstract-title { font-family: $mt-mono; font-size: .66rem; letter-spacing: .09em; text-transform: uppercase; color: $mt-muted; }
+}
+#title-block-header { margin-block-end: 1.25rem; }
+
+// breadcrumbs
+.quarto-page-breadcrumbs .breadcrumb {
+  font-family: $mt-mono;
+  font-size: .72rem;
+  letter-spacing: .02em;
+  margin-bottom: .4rem;
+  a { color: $mt-muted; text-decoration: none; }
+  a:hover { color: $mt-accent; }
+  .breadcrumb-item + .breadcrumb-item::before { content: "/"; color: $mt-faint; }
+  .chapter-number { color: $mt-faint; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  5. Body typography
+// ═══════════════════════════════════════════════════════════════════════
+main.content {
+  > section, & { hyphens: manual; }
+
+  p { margin-bottom: .7rem; }
+  ul, ol { padding-left: 1.35rem; margin-bottom: .75rem; }
+  li { margin: .12rem 0; }
+  li > p { margin-bottom: .25rem; }
+  li > ul, li > ol { margin-top: .1rem; margin-bottom: .2rem; }
+  ol > li::marker { font-family: $mt-mono; font-size: .9em; color: $mt-muted; }
+  ul > li::marker { color: $mt-faint; }
+
+  h1, h2, h3, h4, h5, h6 { color: $mt-fg-strong; scroll-margin-top: 4rem; }
+  h2 {
+    margin-top: 2.1rem;
+    margin-bottom: .7rem;
+    padding-bottom: .3rem;
+    border-bottom: 1px solid $mt-rule;
+    letter-spacing: -.005em;
+  }
+  h3 { margin-top: 1.6rem; margin-bottom: .5rem; }
+  h4 {
+    margin-top: 1.3rem;
+    margin-bottom: .4rem;
+    font-family: $mt-mono;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: $mt-muted;
+  }
+  h5, h6 { margin-top: 1rem; font-weight: 600; }
+
+  // section numbers as engineering refs: "2.3" in mono accent
+  .header-section-number {
+    font-family: $mt-mono;
+    font-weight: 500;
+    font-size: .82em;
+    color: $mt-accent;
+    margin-right: .55em;
+    letter-spacing: 0;
+  }
+  .anchorjs-link { color: $mt-faint !important; font-family: $mt-mono; text-decoration: none !important; }
+  .anchorjs-link:hover { color: $mt-accent !important; }
+
+  // house emphasis: bold = term (orange), italic = concept (teal)
+  :is(p, li, td, dd) > :is(strong, b) { color: $mt-accent; font-weight: 600; }
+  :is(p, li, td, dd) > em { color: $mt-teal; }
+
+  // links: blue + thin underline, never confused with teal italics
+  a:not(.anchorjs-link):not(.footnote-ref):not(.pagination-link):not(.nav-link):not(.btn):not(.code-annotation-anchor) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .18em;
+    text-decoration-color: rgba($mt-link, .35);
+    &:hover { text-decoration-color: currentColor; }
+  }
+  a.external::after { opacity: .6; }
+
+  hr { margin: 1.5rem 0; }
+
+  blockquote, .blockquote {
+    font-size: .95rem;
+    color: $mt-muted;
+    border-left: 3px solid $mt-rule-strong;
+    padding: .1rem 0 .1rem .9rem;
+    margin: 1rem 0;
+  }
+
+  dl > dt { font-weight: 600; color: $mt-fg-strong; margin-top: .45rem; }
+  dl > dd { margin-left: 1.4rem; margin-bottom: .35rem; }
+  dl > dd > p:last-child { margin-bottom: 0; }
+
+  figcaption, .figure-caption, .quarto-float-caption, .panel-caption {
+    font-size: .8rem;
+    color: $mt-muted;
+    line-height: 1.4;
+  }
+  .quarto-float-caption-top, caption,
+  figcaption.quarto-float-tbl, .quarto-figure-center > figure > figcaption.quarto-float-tbl {
+    font-size: .8rem;
+    color: $mt-muted;
+    text-align: left;
+  }
+}
+
+// margin notes / footnotes
+.column-margin, .margin-aside, aside, .footnotes {
+  font-size: .78rem;
+  line-height: 1.45;
+  color: $mt-muted;
+}
+.footnotes { border-top: 1px solid $mt-rule; padding-top: .5rem; margin-top: 2rem; }
+
+// bibliography
+div.csl-entry { clear: both; margin-bottom: .5rem; font-size: .88rem; }
+div.csl-left-margin { font-family: $mt-mono; color: $mt-muted; }
+
+// ═══════════════════════════════════════════════════════════════════════
+//  6. Code
+// ═══════════════════════════════════════════════════════════════════════
+:not(pre) > code:not(.sourceCode) {
+  font-size: .86em;
+  padding: .06em .32em;
+  border: 1px solid $mt-rule;
+  border-radius: 2px;
+  background: $mt-code-bg;
+  color: $mt-code-fg;
+  overflow-wrap: anywhere;
+}
+a > code:not(.sourceCode) { color: inherit; }
+
+div.sourceCode {
+  position: relative;
+  margin: .7rem 0 1rem;
+  background: $mt-block-bg !important;
+  border: 1px solid $mt-rule !important;
+  border-left: 3px solid $mt-rule-strong !important;
+  border-radius: 2px;
+}
+div.sourceCode pre.sourceCode, pre.sourceCode {
+  font-size: .8rem;
+  line-height: 1.5;
+  margin: 0;
+  background: transparent !important;
+  border: 0 !important;
+}
+// plain output blocks
+.cell-output pre, pre:not(.sourceCode) {
+  font-size: .8rem;
+  line-height: 1.45;
+  background: $mt-block-bg;
+  border: 1px solid $mt-rule;
+  border-left: 3px solid $mt-rule;
+  border-radius: 2px;
+  padding: .5rem .75rem;
+}
+.cell-output pre code, pre:not(.sourceCode) code { background: transparent; border: 0; padding: 0; color: $mt-fg; }
+
+// language label (set by tools.html as data-lang)
+div.sourceCode[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 2.3rem;
+  font-family: $mt-mono;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: $mt-faint;
+  padding: .3rem .35rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.code-with-filename div.sourceCode[data-lang]::before { display: none; }
+
+.code-with-filename .code-with-filename-file {
+  background: $mt-surface !important;
+  border: 1px solid $mt-rule;
+  border-bottom: 0;
+  border-radius: 2px 2px 0 0;
+  padding: .25rem .65rem !important;
+  pre { font-family: $mt-mono; font-size: .72rem; margin: 0; color: $mt-muted; border: 0; background: transparent; padding: 0; }
+}
+.code-with-filename .code-with-filename-file + div.sourceCode,
+.code-with-filename .code-with-filename-file + .code-copy-outer-scaffold > div.sourceCode { margin-top: 0; border-top-left-radius: 0; }
+
+.code-copy-button { top: .15rem !important; right: .15rem !important; }
+
+// line numbers
+pre.numberSource code > span > a:first-child::before { color: $mt-faint !important; }
+
+// code-tools toggle button in the title
+.quarto-title-block .code-tools-button { font-family: $mt-mono; font-size: .72rem; color: $mt-muted; }
+
+// ═══════════════════════════════════════════════════════════════════════
+//  7. Tables: hairline grid, tinted head, tabular numbers
+// ═══════════════════════════════════════════════════════════════════════
+main.content table:not(.sourceCode):not(.gt_table):not(.dataTable) {
+  font-size: .86rem;
+  margin: .5rem 0 1.25rem;
+  border: 1px solid $mt-rule;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+
+  > :not(caption) > * > * {
+    border: 1px solid $mt-rule;
+    padding: .28rem .55rem;
+    vertical-align: top;
+    --bs-table-bg: transparent;
+  }
+  > thead > tr > th {
+    --bs-table-bg: #{$mt-surface};
+    color: $mt-fg-strong;
+    font-weight: 600;
+    font-size: .8rem;
+    border-bottom: 1px solid $mt-rule-strong;
+    white-space: nowrap;
+  }
+  > tbody > tr:nth-child(even) > * { --bs-table-bg: #{rgba($mt-fg, .025)}; }
+  > tbody > tr:hover > * { --bs-table-bg: #{rgba($mt-accent, .05)}; }
+  > tbody { border-top: 0 !important; }
+  caption { caption-side: top; padding: 0 0 .3rem; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  8. Callouts: squared, compact, mono header
+// ═══════════════════════════════════════════════════════════════════════
+.callout {
+  border-radius: 2px;
+  &.callout-style-default, &.callout-style-simple {
+    border-top: 1px solid $mt-rule;
+    border-right: 1px solid $mt-rule;
+    border-bottom: 1px solid $mt-rule;
+  }
+  .callout-body { font-size: .9rem !important; }
+  &.callout-style-default > .callout-header {
+    font-family: $mt-mono;
+    font-size: .72rem !important;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    opacity: 1 !important;
+    padding: .28rem .6rem !important;
+    margin-bottom: 0 !important;
+  }
+  &.callout-style-default .callout-body { padding: .1rem .75rem .1rem; }
+  &.callout-style-default .callout-body > :first-child { padding-top: .45rem; }
+  &.callout-style-default .callout-icon::before { width: .85rem; height: .85rem; background-size: .85rem .85rem; }
+  &.callout-style-default .callout-icon-container { margin-top: 0 !important; }
+}
+// header = faint tint + type-coloured label (Quarto's default is a heavy
+// block in dark mode)
+@each $name, $c in ("note": $callout-color-note, "tip": $callout-color-tip,
+                    "warning": $callout-color-warning, "caution": $callout-color-caution,
+                    "important": $callout-color-important) {
+  div.callout-#{$name}.callout-style-default > .callout-header {
+    background-color: rgba($c, .09) !important;
+    color: $c;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  9. Theorem-type blocks (Quarto native: #thm- #lem- #def- #exm- ...)
+// ═══════════════════════════════════════════════════════════════════════
+main.content {
+  div.theorem {
+    margin: 1rem 0;
+    padding: .5rem .8rem .1rem;
+    border: 1px solid $mt-rule;
+    border-left: 3px solid $mt-accent;
+    border-radius: 2px;
+    background: rgba($mt-accent, .035);
+  }
+  div.theorem.definition { border-left-color: $mt-teal; background: rgba($mt-teal, .045); }
+  div.theorem:is(.example, .exercise) { border-left-color: $mt-rule-strong; background: $mt-surface; }
+  div.theorem:is(.conjecture) { border-left-style: dashed; }
+
+  .theorem-title, .proof-title {
+    font-family: $mt-mono;
+    font-size: .78rem;
+    letter-spacing: .03em;
+    margin-right: .4em;
+  }
+  .theorem-title > strong { color: $mt-fg-strong !important; font-weight: 600; }
+  div.theorem.definition .theorem-title > strong { color: $mt-teal !important; }
+  .proof-title > em { color: $mt-muted !important; font-style: normal; font-weight: 600; }
+
+  div.proof {
+    margin: .4rem 0 1.1rem;
+    padding: .1rem 0 .1rem .9rem;
+    border-left: 1px dashed $mt-rule-strong;
+  }
+  div.proof:not(.remark):not(.solution) > :last-child::after {
+    content: "∎";
+    float: right;
+    color: $mt-muted;
+    margin-left: 1rem;
+  }
+}
+
+// mermaid edge labels ignore the palette unless forced
+.edgeLabel, .edgeLabel p, .edgeLabel rect, .labelBkg {
+  background-color: $mt-bg !important;
+  fill: $mt-bg !important;
+  color: $mt-fg !important;
+}
+
+// pseudocode extension (leovan/quarto-pseudocode): match the house type
+.ps-root {
+  font-family: $mt-sans !important;
+  font-size: .9rem !important;
+  font-weight: 400 !important;
+  .ps-algorithm { border-top: 2px solid $mt-fg-strong; border-bottom: 1px solid $mt-fg-strong; padding: .1rem 0; }
+  .ps-algorithm.with-caption > .ps-line:first-child { border-bottom: 1px solid $mt-rule-strong; padding: .15rem 0; }
+  .ps-keyword, .ps-funcname, .ps-comment { font-family: $mt-sans !important; }
+  .ps-keyword { font-weight: 600 !important; color: $mt-fg-strong; }
+  .ps-comment { color: $mt-muted; }
+  .ps-linenum { font-family: $mt-mono; color: $mt-faint; }
+  .ps-line { line-height: 1.45 !important; }
+  .ps-algorithmic.with-scopelines div.ps-block { border-left-color: $mt-rule-strong; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  10. Page navigation + footer
+// ═══════════════════════════════════════════════════════════════════════
+.page-navigation {
+  margin-top: 2.5rem;
+  padding-top: .75rem;
+  border-top: 1px solid $mt-rule;
+  gap: 1rem;
+  .nav-page { flex: 1 1 0; max-width: 50%; }
+  .nav-page a.pagination-link {
+    display: block;
+    padding: .45rem .75rem;
+    border: 1px solid $mt-rule;
+    border-radius: 2px;
+    color: $mt-fg;
+    text-decoration: none;
+    &:hover { border-color: $mt-accent; color: $mt-fg-strong; }
+    > .bi { display: none; }
+    &::before {
+      display: block;
+      font-family: $mt-mono;
+      font-size: .64rem;
+      letter-spacing: .09em;
+      color: $mt-muted;
+      margin-bottom: .1rem;
+    }
+  }
+  .nav-page-previous a.pagination-link::before { content: "← PREVIOUS"; }
+  .nav-page-next { text-align: right; }
+  .nav-page-next a.pagination-link::before { content: "NEXT →"; }
+  .chapter-number { font-family: $mt-mono; color: $mt-faint; font-size: .85em; }
+}
+
+.nav-footer {
+  font-size: .76rem;
+  border-top: 1px solid $mt-rule !important;
+  min-height: 0;
+  padding: .5rem 0;
+  align-items: center;
+  a { color: $mt-muted; }
+  a:hover { color: $mt-accent; }
+}
+.nav-footer-center { min-height: 0 !important; }
+.bi-heart-fill { color: $mt-err; }
+
+// back-to-top / reader toggle
+#quarto-back-to-top { font-family: $mt-mono; font-size: .72rem; }
+
+// ═══════════════════════════════════════════════════════════════════════
+//  11. Author utilities
+//      [UNIG-1]{.tag .accent}   [passive]{.tag .warn}
+//      ::: {.spec}  (definition list → key/value sheet)  :::
+//      ::: {.compact}  (tighter lists/tables inside)      :::
+// ═══════════════════════════════════════════════════════════════════════
+.tag {
+  display: inline-block;
+  font-family: $mt-mono;
+  font-size: .74em;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: .03em;
+  padding: .02em .42em;
+  border: 1px solid $mt-rule-strong;
+  border-radius: 2px;
+  background: $mt-surface;
+  color: $mt-fg;
+  vertical-align: .08em;
+  white-space: nowrap;
+  &.accent { color: $mt-accent; border-color: rgba($mt-accent, .55); background: rgba($mt-accent, .07); }
+  &.ok     { color: $mt-ok;     border-color: rgba($mt-ok, .5);     background: rgba($mt-ok, .07); }
+  &.warn   { color: $mt-warn;   border-color: rgba($mt-warn, .5);   background: rgba($mt-warn, .08); }
+  &.err    { color: $mt-err;    border-color: rgba($mt-err, .5);    background: rgba($mt-err, .07); }
+  &.info   { color: $mt-info;   border-color: rgba($mt-info, .5);   background: rgba($mt-info, .07); }
+}
+
+main.content .spec > dl, main.content dl.spec {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) 1fr;
+  border: 1px solid $mt-rule;
+  border-radius: 2px;
+  margin: .5rem 0 1.1rem;
+  font-size: .88rem;
+  > dt {
+    margin: 0;
+    padding: .32rem .7rem;
+    background: $mt-surface;
+    border-right: 1px solid $mt-rule;
+    border-bottom: 1px solid $mt-rule;
+    font-family: $mt-mono;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: $mt-muted;
+  }
+  > dd {
+    margin: 0;
+    padding: .3rem .7rem;
+    border-bottom: 1px solid $mt-rule;
+    > p { margin: 0; }
+  }
+  > dt:last-of-type, > dd:last-of-type { border-bottom: 0; }
+}
+
+main.content .compact {
+  li { margin: 0; }
+  p { margin-bottom: .4rem; }
+  table > :not(caption) > * > * { padding: .14rem .4rem; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+//  12. Misc carried over from the old custom.scss
+// ═══════════════════════════════════════════════════════════════════════
+.downlit code a:any-link {
+  text-decoration: underline;
+  text-decoration-color: $mt-rule-strong;
+}

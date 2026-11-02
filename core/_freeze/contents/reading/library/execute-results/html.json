@@ -1,0 +1,19 @@
+{
+  "hash": "53e31d2ec90f0b01fd52539e9e108fc0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"R.R.1. Theoretical Reading List A\"\npage-layout: article\n---\n\nWell, let's test it out.\n\n\n::: {.cell .column-body}\n\n```{.r .cell-code}\nlibrary(leaflet)\nleaflet(height = 500) %>%\n  addTiles() %>%  \n  addMarkers(lng = 105.825472, lat = 21.005333, popup = \"RHINELAB Operating Room\")\n```\n\n::: {.cell-output-display}\n\n```{=html}\n<div id=\"htmlwidget-aeca610b765506af9bcf\" style=\"width:100%;height:500px;\" class=\"leaflet html-widget\"></div>\n<script type=\"application/json\" data-for=\"htmlwidget-aeca610b765506af9bcf\">{\"x\":{\"options\":{\"crs\":{\"crsClass\":\"L.CRS.EPSG3857\",\"code\":null,\"proj4def\":null,\"projectedBounds\":null,\"options\":{}}},\"calls\":[{\"method\":\"addTiles\",\"args\":[\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\",null,null,{\"minZoom\":0,\"maxZoom\":18,\"tileSize\":256,\"subdomains\":\"abc\",\"errorTileUrl\":\"\",\"tms\":false,\"noWrap\":false,\"zoomOffset\":0,\"zoomReverse\":false,\"opacity\":1,\"zIndex\":1,\"detectRetina\":false,\"attribution\":\"&copy; <a href=\\\"https://openstreetmap.org/copyright/\\\">OpenStreetMap<\\/a>,  <a href=\\\"https://opendatacommons.org/licenses/odbl/\\\">ODbL<\\/a>\"}]},{\"method\":\"addMarkers\",\"args\":[21.005333,105.825472,null,null,null,{\"interactive\":true,\"draggable\":false,\"keyboard\":true,\"title\":\"\",\"alt\":\"\",\"zIndexOffset\":0,\"opacity\":1,\"riseOnHover\":false,\"riseOffset\":250},\"RHINELAB Operating Room\",null,null,null,null,{\"interactive\":false,\"permanent\":false,\"direction\":\"auto\",\"opacity\":1,\"offset\":[0,0],\"textsize\":\"10px\",\"textOnly\":false,\"className\":\"\",\"sticky\":true},null]}],\"limits\":{\"lat\":[21.005333,21.005333],\"lng\":[105.825472,105.825472]}},\"evals\":[],\"jsHooks\":[]}</script>\n```\n\n:::\n:::\n\n\nThat said, hear me out for a bit. \n\n## What the heck?\n\nwho?\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<script src=\"../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js\"></script>\n<script src=\"../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js\"></script>\n<link href=\"../../site_libs/leaflet-1.3.1/leaflet.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/leaflet-1.3.1/leaflet.js\"></script>\n<link href=\"../../site_libs/leafletfix-1.0.0/leafletfix.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/proj4-2.6.2/proj4.min.js\"></script>\n<script src=\"../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js\"></script>\n<link href=\"../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/leaflet-binding-2.2.3/leaflet.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

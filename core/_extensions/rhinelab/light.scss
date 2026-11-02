@@ -1,0 +1,33 @@
+/*-- scss:defaults --*/
+// RHINELAB docs theme: LIGHT palette.
+// Colour tokens only. Every rule lives in core.scss, so light and dark
+// differ in colour and nothing else.
+
+$mt-bg:           #ffffff;
+$mt-surface:      #f4f5f7;   // sidebar, table heads, panels
+$mt-surface-2:    #e9ecf0;   // hover, active rows
+$mt-fg:           #1f2328;
+$mt-fg-strong:    #0b0f14;   // headings
+$mt-muted:        #56606b;
+$mt-faint:        #8a939d;
+$mt-rule:         #d9dde2;
+$mt-rule-strong:  #b3bbc4;
+
+$mt-link:         #0b5cad;
+$mt-accent:       #c2510a;   // house orange (bold terms, active markers)
+$mt-teal:         #1b7c8f;   // house teal (italic terms)
+
+$mt-nav-bg:       #2e4a68;   // steel
+$mt-nav-fg:       #dfe7f0;
+$mt-nav-hl:       #ffffff;
+
+$mt-code-fg:      #3f4f9f;
+$mt-code-bg:      #eef1f4;
+$mt-block-bg:     #f6f8fa;
+
+$mt-ok:           #1a7f37;
+$mt-warn:         #9a6700;
+$mt-err:          #c42b1c;
+$mt-info:         #0b5cad;
+
+$mt-sel:          rgba(27, 124, 143, 0.18);

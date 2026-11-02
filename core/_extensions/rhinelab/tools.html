@@ -1,0 +1,252 @@
+<script id="rhinelab-tools">
+/* RHINELAB docs tools: sidebar filter, expand/collapse/locate, remembered
+   section state, Sphinx-style page panel, keyboard nav, code language labels.
+   No dependencies; uses Bootstrap's Collapse if present. */
+(() => {
+  "use strict";
+
+  const onReady = (fn) =>
+    document.readyState === "loading"
+      ? document.addEventListener("DOMContentLoaded", () => setTimeout(fn, 0))
+      : setTimeout(fn, 0);
+
+  // one storage namespace per site (several sites can share a domain)
+  const siteRoot = (() => {
+    const off = document.querySelector('meta[name="quarto:offset"]');
+    try { return new URL(off ? off.content : "./", location.href).pathname; }
+    catch { return "/"; }
+  })();
+  const store = {
+    key: "rhinelab:sidebar:" + siteRoot,
+    read() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch { return {}; } },
+    write(v) { try { localStorage.setItem(this.key, JSON.stringify(v)); } catch {} },
+  };
+
+  const el = (tag, attrs = {}, html = "") => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (html) n.innerHTML = html;
+    return n;
+  };
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const clean = (s) => (s || "").replace(/\s+/g, " ").trim();
+  const isTyping = (t) => t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+
+  onReady(() => {
+    const sidebar = document.getElementById("quarto-sidebar");
+    const menu = sidebar && sidebar.querySelector(".sidebar-menu-container");
+    const prevLink = document.querySelector(".page-navigation .nav-page-previous a.pagination-link");
+    const nextLink = document.querySelector(".page-navigation .nav-page-next a.pagination-link");
+
+    // ── code blocks: language label ────────────────────────────────────
+    const skip = new Set(["sourceCode", "code-with-copy", "number-lines", "numberSource", "code-annotation-code", "cell-code"]);
+    document.querySelectorAll("div.sourceCode > pre.sourceCode").forEach((pre) => {
+      const lang = [...pre.classList].find((c) => !skip.has(c));
+      if (lang) pre.parentElement.setAttribute("data-lang", lang === "r" ? "R" : lang);
+    });
+
+    // ── keyboard: [ ] prev/next page, t = filter ───────────────────────
+    let filterInput = null;
+    document.addEventListener("keydown", (e) => {
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || isTyping(e.target)) return;
+      if (e.key === "[" && prevLink) { e.preventDefault(); location.href = prevLink.href; }
+      else if (e.key === "]" && nextLink) { e.preventDefault(); location.href = nextLink.href; }
+      else if (e.key === "t" && filterInput && filterInput.offsetParent !== null) {
+        e.preventDefault(); filterInput.focus(); filterInput.select();
+      }
+    });
+
+    if (!sidebar || !menu) return;
+
+    // ── section open/close helpers ─────────────────────────────────────
+    const sections = () => [...menu.querySelectorAll("ul.sidebar-section[id]")];
+    const triggersFor = (ul) => sidebar.querySelectorAll(`[data-bs-target="#${CSS.escape(ul.id)}"]`);
+    const setOpen = (ul, open) => {
+      ul.classList.toggle("show", open);
+      triggersFor(ul).forEach((a) => {
+        a.setAttribute("aria-expanded", String(open));
+        a.classList.toggle("collapsed", !open);
+      });
+    };
+    const holdsActive = (ul) => !!ul.querySelector("a.sidebar-link.active");
+    const openAncestors = (node) => {
+      let ul = node.closest("ul.sidebar-section");
+      while (ul) { setOpen(ul, true); ul = ul.parentElement.closest("ul.sidebar-section"); }
+    };
+
+    // remember what the reader opened/closed, across pages
+    let state = store.read();
+    sections().forEach((ul) => {
+      if (!(ul.id in state)) return;
+      if (state[ul.id] === false && holdsActive(ul)) return; // never hide the current page
+      setOpen(ul, state[ul.id]);
+    });
+    let filtering = false;
+    const remember = (e) => {
+      const ul = e.target;
+      if (filtering || !ul.classList || !ul.classList.contains("sidebar-section") || !ul.id) return;
+      state[ul.id] = e.type === "shown.bs.collapse";
+      store.write(state);
+    };
+    sidebar.addEventListener("shown.bs.collapse", remember);
+    sidebar.addEventListener("hidden.bs.collapse", remember);
+
+    // ── toolbar: filter + expand/collapse/locate ───────────────────────
+    const bar = el("div", { class: "mt-sb-toolbar", role: "toolbar", "aria-label": "Navigation tools" });
+    bar.innerHTML =
+      '<label class="mt-sb-filter"><i class="bi bi-funnel" aria-hidden="true"></i>' +
+      '<input type="search" placeholder="Filter pages" aria-label="Filter navigation" autocomplete="off" spellcheck="false">' +
+      "<kbd>t</kbd></label>" +
+      '<button type="button" class="mt-sb-btn" data-act="expand" title="Expand all"><i class="bi bi-arrows-expand"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="collapse" title="Collapse all"><i class="bi bi-arrows-collapse"></i></button>' +
+      '<button type="button" class="mt-sb-btn" data-act="locate" title="Reveal current page"><i class="bi bi-crosshair"></i></button>';
+    menu.parentNode.insertBefore(bar, menu);
+    filterInput = bar.querySelector("input");
+    const empty = el("div", { class: "mt-sb-empty", hidden: "" }, "no matching pages");
+    menu.appendChild(empty);
+
+    // scroll only the sidebar (scrollIntoView would also move the page)
+    const centerIn = (a, smooth) => {
+      const r = a.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      sidebar.scrollTo({ top: sidebar.scrollTop + (r.top - s.top) - s.height / 2 + r.height / 2,
+                         behavior: smooth ? "smooth" : "auto" });
+    };
+    const locate = () => {
+      const a = menu.querySelector("a.sidebar-link.active");
+      if (!a) return;
+      openAncestors(a);
+      centerIn(a, true);
+      a.focus({ preventScroll: true });
+    };
+
+    bar.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-act]");
+      if (!btn) return;
+      const act = btn.dataset.act;
+      if (act === "locate") return locate();
+      const open = act === "expand";
+      sections().forEach((ul) => { setOpen(ul, open); state[ul.id] = open; });
+      if (!open) { const a = menu.querySelector("a.sidebar-link.active"); if (a) openAncestors(a); }
+      store.write(state);
+    });
+
+    // filter
+    const items = [...menu.querySelectorAll("li.sidebar-item")];
+    const labelOf = (li) => {
+      const a = li.querySelector(":scope > .sidebar-item-container > a.sidebar-item-text");
+      return clean(a ? a.textContent : "").toLowerCase();
+    };
+    const labels = new Map(items.map((li) => [li, labelOf(li)]));
+    let snapshot = null;
+
+    const runFilter = (raw) => {
+      const terms = clean(raw).toLowerCase().split(" ").filter(Boolean);
+      if (!terms.length) {
+        filtering = false;
+        items.forEach((li) => li.classList.remove("mt-hide", "mt-match"));
+        if (snapshot) { snapshot.forEach(([ul, open]) => setOpen(ul, open)); snapshot = null; }
+        empty.hidden = true;
+        return;
+      }
+      if (!snapshot) snapshot = sections().map((ul) => [ul, ul.classList.contains("show")]);
+      filtering = true;
+      items.forEach((li) => { li.classList.add("mt-hide"); li.classList.remove("mt-match"); });
+      let hits = 0;
+      items.forEach((li) => {
+        const label = labels.get(li);
+        if (!terms.every((t) => label.includes(t))) return;
+        hits++;
+        li.classList.remove("mt-hide");
+        li.classList.add("mt-match");
+        const own = li.querySelector(":scope > ul.sidebar-section");
+        if (own) { setOpen(own, true); own.querySelectorAll("li.sidebar-item").forEach((d) => d.classList.remove("mt-hide")); }
+        let p = li.parentElement.closest("li.sidebar-item");
+        while (p) {
+          p.classList.remove("mt-hide");
+          const ul = p.querySelector(":scope > ul.sidebar-section");
+          if (ul) setOpen(ul, true);
+          p = p.parentElement.closest("li.sidebar-item");
+        }
+      });
+      empty.hidden = hits > 0;
+    };
+
+    filterInput.addEventListener("input", () => runFilter(filterInput.value));
+    filterInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { filterInput.value = ""; runFilter(""); filterInput.blur(); }
+      else if (e.key === "Enter") {
+        const first = menu.querySelector("li.mt-match > .sidebar-item-container > a.sidebar-link[href]");
+        if (first) location.href = first.href;
+      } else if (e.key === "ArrowDown") {
+        const first = menu.querySelector("li.sidebar-item:not(.mt-hide) a.sidebar-link[href]");
+        if (first) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // ↑/↓ moves between visible links inside the tree
+    menu.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const links = [...menu.querySelectorAll("a.sidebar-link[href]")].filter((a) => a.offsetParent !== null);
+      const i = links.indexOf(document.activeElement);
+      if (i < 0) return;
+      e.preventDefault();
+      const j = e.key === "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1;
+      if (j < 0) filterInput.focus(); else links[j].focus();
+    });
+
+    // ── page panel (Sphinx: previous / next topic, this page, meta) ────
+    const panel = el("div", { class: "mt-sb-panel" });
+    const topic = (a, dir, label) =>
+      `<section class="mt-sb-block"><h6>${label}</h6><a class="mt-topic" href="${a.getAttribute("href")}">` +
+      `<span class="mt-dir">${dir}</span><span>${esc(clean(a.textContent))}</span></a></section>`;
+    let html = "";
+    if (prevLink) html += topic(prevLink, "[", "Previous topic");
+    if (nextLink) html += topic(nextLink, "]", "Next topic");
+
+    const actionsBox = document.querySelector("#quarto-margin-sidebar .toc-actions") ||
+                       document.querySelector("nav[role='doc-toc'] .toc-actions");
+    const actions = actionsBox ? [...actionsBox.querySelectorAll("a")] : [];
+    const icon = (t) => /edit/i.test(t) ? "pencil-square" : /issue|bug/i.test(t) ? "bug" : /source/i.test(t) ? "file-earmark-code" : "box-arrow-up-right";
+    html += '<section class="mt-sb-block"><h6>This page</h6><ul>';
+    actions.forEach((a) => {
+      const t = clean(a.textContent);
+      html += `<li><a href="${a.getAttribute("href")}"${a.target ? ` target="${a.target}"` : ""}><i class="bi bi-${icon(t)}"></i>${esc(t)}</a></li>`;
+    });
+    html += '<li><button type="button" class="mt-linklike" data-act="copy-link"><i class="bi bi-link-45deg"></i><span>Copy link</span></button></li>';
+    html += "</ul></section>";
+
+    const main = document.querySelector("main.content");
+    if (main) {
+      const body = main.cloneNode(true);
+      body.querySelectorAll("pre, code, script, style, .MathJax, mjx-container, .quarto-title-block, nav, .footnotes").forEach((n) => n.remove());
+      const words = (body.textContent.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu) || []).length;
+      const mod = document.querySelector(".quarto-title-meta .date-modified, p.date-modified");
+      const secs = main.querySelectorAll("section.level2").length;
+      html += '<section class="mt-sb-block mt-sb-meta"><h6>Page</h6><dl>';
+      if (mod) html += `<dt>Modified</dt><dd>${esc(clean(mod.textContent))}</dd>`;
+      html += `<dt>Length</dt><dd>${words.toLocaleString()} words · ~${Math.max(1, Math.round(words / 220))} min</dd>`;
+      if (secs) html += `<dt>Sections</dt><dd>${secs}</dd>`;
+      html += "</dl></section>";
+    }
+    html += '<div class="mt-sb-keys"><kbd>t</kbd> filter · <kbd>[</kbd> <kbd>]</kbd> prev/next · <kbd>s</kbd> search</div>';
+    panel.innerHTML = html;
+    menu.after(panel);
+
+    panel.addEventListener("click", async (e) => {
+      const btn = e.target.closest('[data-act="copy-link"]');
+      if (!btn) return;
+      const span = btn.querySelector("span");
+      try { await navigator.clipboard.writeText(location.href.split("#")[0]); span.textContent = "Copied"; }
+      catch { span.textContent = "Copy failed"; }
+      setTimeout(() => (span.textContent = "Copy link"), 1400);
+    });
+
+    // keep the current page in view on load (without animation)
+    const active = menu.querySelector("a.sidebar-link.active");
+    if (active) {
+      const r = active.getBoundingClientRect(), s = sidebar.getBoundingClientRect();
+      if (r.top < s.top || r.bottom > s.bottom) centerIn(active, false);
+    }
+  });
+})();
+</script>

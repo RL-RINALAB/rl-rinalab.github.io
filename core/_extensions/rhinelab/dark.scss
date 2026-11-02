@@ -1,0 +1,34 @@
+/*-- scss:defaults --*/
+// RHINELAB docs theme: DARK palette.
+// Same token names as light.scss. No filter: brightness() tricks; the
+// colours are chosen dark at the source, so images and code keep their
+// true contrast.
+
+$mt-bg:           #131518;
+$mt-surface:      #1a1d21;
+$mt-surface-2:    #23272d;
+$mt-fg:           #d2d6dc;
+$mt-fg-strong:    #f0f2f5;
+$mt-muted:        #939ba6;
+$mt-faint:        #67707b;
+$mt-rule:         #2c3138;
+$mt-rule-strong:  #424a54;
+
+$mt-link:         #6aaeff;
+$mt-accent:       #f08c4a;
+$mt-teal:         #4db8ca;
+
+$mt-nav-bg:       #1b2938;
+$mt-nav-fg:       #c5d1de;
+$mt-nav-hl:       #ffffff;
+
+$mt-code-fg:      #b4c8ff;
+$mt-code-bg:      #22262c;
+$mt-block-bg:     #181b1f;
+
+$mt-ok:           #4ac26b;
+$mt-warn:         #d4a72c;
+$mt-err:          #ff6b5e;
+$mt-info:         #6aaeff;
+
+$mt-sel:          rgba(77, 184, 202, 0.28);

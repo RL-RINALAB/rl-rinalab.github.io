@@ -1,0 +1,41 @@
+title: RHINELAB Docs
+author: RHINELAB
+version: 1.0.0
+quarto-required: ">=1.9.0"
+contributes:
+  formats:
+    html:
+      # one rule set, two palettes: light/dark can no longer drift apart
+      theme:
+        light: [default, core.scss, light.scss]
+        dark: [default, core.scss, dark.scss]
+      respect-user-color-scheme: true
+      syntax-highlighting:
+        light: github-light
+        dark: github-dark
+      include-after-body: tools.html
+
+      # layout
+      grid:
+        sidebar-width: 270px
+        body-width: 860px
+        margin-width: 230px
+        gutter-width: 1.25rem
+      toc: true
+      toc-depth: 3
+      toc-expand: 1
+      toc-title: "On this page"
+      anchor-sections: true
+      smooth-scroll: true
+
+      # reading aids
+      lightbox: true
+      citations-hover: true
+      footnotes-hover: true
+      crossrefs-hover: true
+      link-external-icon: true
+      link-external-newwindow: true
+
+      # code
+      code-copy: true
+      code-annotations: hover
