@@ -3,6 +3,10 @@ project:
   output-dir: public
   resources:
     - robots.txt            # was "robot.txt"; crawlers only read robots.txt
+  render:
+    - "!README.md"
+    - "!readme.md"
+    - "!Readme.md"
 
 book:
   title: "Learning Theory Coursebook"

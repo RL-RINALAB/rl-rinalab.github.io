@@ -3,11 +3,11 @@ name: Quarto Publish
 on:
   push:
     branches:
-      - main
+      - main # Triggers the action when you push to main
 
 permissions:
-  contents: write
-  pages: write
+  contents: write # REQUIRED: Allows the action to commit new files to the gh-pages branch
+  pages: write    # REQUIRED: Allows the action to update GitHub Pages
 
 jobs:
   build-deploy:
@@ -19,10 +19,10 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render and Publish
+      - name: Render and Publish to gh-pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
-          target: gh-pages
-          path: core # Tells Quarto to run from the core/ folder
+          target: gh-pages # This tells Quarto to commit the output to the gh-pages branch
+          path: core       # Tells Quarto your source files are in the core/ folder
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
