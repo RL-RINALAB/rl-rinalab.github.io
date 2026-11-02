@@ -1,8 +1,5 @@
 ---
-format:
-  html:
-    grid:
-      body-width: 1200px
+title: Introduction
 ---
 # Introduction
 
